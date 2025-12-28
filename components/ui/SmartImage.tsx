@@ -32,33 +32,21 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   };
 
   const handleError = () => {
-    if (!src) return;
+    if (!src || hasError) return;
 
     const nextAttempt = attempt + 1;
     setAttempt(nextAttempt);
 
-    // Strategie zur Pfad-Korrektur auf GitHub Pages
     if (nextAttempt === 1) {
-       // Versuch 1: Führenden Slash entfernen/hinzufügen
-       setCurrentSrc(src.startsWith('/') ? src.slice(1) : '/' + src);
-    } 
-    else if (nextAttempt === 2) {
-       // Versuch 2: Projektnamen aus URL extrahieren (für GitHub Pages Subfolder)
-       const pathParts = window.location.pathname.split('/').filter(Boolean);
-       if (pathParts.length > 0) {
-         const projectName = pathParts[0];
-         // Wenn wir nicht schon im Projektpfad sind, fügen wir ihn vorne an
-         const cleanSrc = src.replace(/^\//, '');
-         if (!window.location.pathname.includes(cleanSrc)) {
-            setCurrentSrc(`/${projectName}/${cleanSrc}`);
-         } else {
-            setAttempt(3); // Weiter zum nächsten
-         }
-       } else {
-         setAttempt(3);
-       }
-    }
-    else {
+      // Versuch 1: Wenn der Pfad mit / startet, entfernen wir ihn für GitHub Pages
+      if (src.startsWith('/')) {
+        setCurrentSrc(src.slice(1));
+      } else {
+        // Wenn er nicht mit / startet, fügen wir ihn testweise hinzu
+        setCurrentSrc('/' + src);
+      }
+    } else {
+      // Alles fehlgeschlagen
       setHasError(true);
       setIsLoading(false);
     }

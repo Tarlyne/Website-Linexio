@@ -6,8 +6,7 @@
     <title>Linexio - Ihr Unterricht. Ihre Daten.</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind Play CDN für sofortiges Styling in der Vorschau. 
-         Der Vite-Build nutzt für die finale Website weiterhin die index.css + tailwind.config.js -->
+    <!-- Tailwind Play CDN für sofortiges Styling in der Vorschau. -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -28,7 +27,7 @@
       }
     </script>
 
-    <!-- Importmap: Strikt auf Version 19.0.0 konsolidiert, um useMemo/Multiple Instances Fehler zu vermeiden -->
+    <!-- SAUBERE Importmap: Nur EINE React-Version (19.0.0) -->
     <script type="importmap">
 {
   "imports": {
@@ -46,7 +45,6 @@
 </script>
 
     <style>
-      /* Fallback-Styles für den Layout-Container */
       body {
         margin: 0;
         background-color: #111827;
