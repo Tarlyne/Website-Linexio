@@ -113,7 +113,7 @@ export const content: ContentStore = {
           title: "Alle Systeme, volle Flexibilität",
           description: "Linexio beherrscht mehrere Notensysteme. Erstellen Sie Ihre Notenberechnung nach Ihren Vorstellungen - inklusive Gewichtung für jeden Eintrag.",
           visualType: "table",
-          image: "/screenshots/notenverwaltung.webp"
+          image: "screenshots/notenverwaltung.webp"
         },
         {
           title: "Klausuren & Notenschlüssel",
