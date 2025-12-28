@@ -11,6 +11,7 @@ interface SmartImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>
  * SmartImage löst das "GitHub Pages Pfad-Problem".
  * Auf GitHub Pages liegen Projekte oft unter tarlyne.github.io/PROJEKTNAME/
  * Ein normaler Pfad wie "/screenshots/bild.png" leitet zur Root (tarlyne.github.io) um -> 404.
+ * Die Lösung ist die Verwendung von relativen Pfaden ohne führenden Slash.
  */
 export const SmartImage: React.FC<SmartImageProps> = ({ 
   src, 
@@ -20,32 +21,13 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   fallbackComponent,
   ...props 
 }) => {
-  const [currentSrc, setCurrentSrc] = useState<string | undefined>();
+  const [currentSrc, setCurrentSrc] = useState<string | undefined>(src);
   const [attempt, setAttempt] = useState(0);
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Initialer Pfad-Check
   useEffect(() => {
-    if (!src) return;
-
-    // Wir bereinigen den Pfad: kein führender Slash für maximale Kompatibilität mit relativem Routing
-    let finalPath = src;
-    if (src.startsWith('/')) {
-      finalPath = src.slice(1);
-    }
-
-    // Wenn wir auf GitHub Pages sind, müssen wir den Projektnamen einfügen
-    if (window.location.hostname.includes('github.io')) {
-      const pathParts = window.location.pathname.split('/').filter(Boolean);
-      // Wenn der erste Teil nicht der Start von src ist, ist es wahrscheinlich der Projektname
-      if (pathParts.length > 0 && !finalPath.startsWith(pathParts[0])) {
-        finalPath = `${pathParts[0]}/${finalPath}`;
-      }
-    }
-
-    // Sicherstellen, dass der Pfad absolut zur Domain ist, aber inkl. Subfolder
-    setCurrentSrc('/' + finalPath.replace(/^\//, ''));
+    setCurrentSrc(src);
     setAttempt(0);
     setHasError(false);
     setIsLoading(true);
@@ -62,13 +44,13 @@ export const SmartImage: React.FC<SmartImageProps> = ({
     setAttempt(nextAttempt);
 
     if (nextAttempt === 1) {
-      // Zweiter Versuch: Komplett relativer Pfad (ohne führenden Slash)
-      // Das funktioniert oft am besten, wenn der HashRouter aktiv ist
-      setCurrentSrc(src.replace(/^\//, ''));
-    } else if (nextAttempt === 2) {
-      // Dritter Versuch: Falls es ein absoluter Pfad im Root ist
-      setCurrentSrc(src.startsWith('/') ? src : '/' + src);
+      // Versuch 1: Entferne den führenden Slash, um den Pfad relativ zu machen.
+      // Aus "/screenshots/bild.webp" wird "screenshots/bild.webp".
+      // Auf GitHub Pages (z.B. .../linexio-marketing/) sucht der Browser dann im richtigen Unterordner.
+      const relativePath = src.startsWith('/') ? src.slice(1) : src;
+      setCurrentSrc(relativePath);
     } else {
+      // Alles fehlgeschlagen
       setHasError(true);
       setIsLoading(false);
     }
