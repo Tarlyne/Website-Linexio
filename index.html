@@ -5,20 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Linexio - Ihr Unterricht. Ihre Daten.</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script type="importmap">
+    
+    <!-- Tailwind Play CDN für sofortiges Styling in der Vorschau. 
+         Der Vite-Build nutzt für die finale Website weiterhin die index.css + tailwind.config.js -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ['Inter', 'sans-serif'] },
+            colors: {
+              brand: {
+                50: '#ecfeff', 100: '#cffafe', 200: '#a5f3fc', 300: '#67e8f9', 
+                400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2', 700: '#0e7490', 
+                800: '#155e75', 900: '#164e63', 950: '#083344'
+              },
+              dark: { 800: '#1f2937', 900: '#111827', 950: '#030712' }
+            },
+            boxShadow: { 'glow': '0 0 50px 5px rgba(8, 145, 178, 0.25)' }
+          }
+        }
+      }
+    </script>
+
+    <!-- Importmap: Strikt auf Version 19.0.0 konsolidiert, um useMemo/Multiple Instances Fehler zu vermeiden -->
+    <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.475.0?external=react",
+    "framer-motion": "https://esm.sh/framer-motion@11.11.17?external=react",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
     "vite": "https://esm.sh/vite@^7.3.0",
     "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
 }
 </script>
-</head>
+
+    <style>
+      /* Fallback-Styles für den Layout-Container */
+      body {
+        margin: 0;
+        background-color: #111827;
+        color: #f1f5f9;
+        font-family: 'Inter', sans-serif;
+        background-image: radial-gradient(circle at 25% 25%, #1D2433 0%, #111827 60%);
+        background-attachment: fixed;
+        min-height: 100vh;
+      }
+      #root { min-height: 100vh; }
+    </style>
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="./index.tsx"></script>
