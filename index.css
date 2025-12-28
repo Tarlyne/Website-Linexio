@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-dark-900 text-slate-100 min-h-screen overflow-x-hidden;
+    background: radial-gradient(circle at 25% 25%, #1D2433 0%, #111827 60%);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .glossy-bar {
+    @apply relative overflow-hidden;
+  }
+  .glossy-bar::after {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-1/2 pointer-events-none;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-dark-900;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-full;
+}

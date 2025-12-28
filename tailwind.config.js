@@ -31,15 +31,6 @@ export default {
       },
       boxShadow: {
         'glow': '0 0 50px 5px rgba(8, 145, 178, 0.25)',
-      },
-      animation: {
-        'aurora': 'aurora 20s linear infinite',
-      },
-      keyframes: {
-        aurora: {
-          '0%': { backgroundPosition: '50% 50%, 50% 50%' },
-          '100%': { backgroundPosition: '350% 50%, 350% 50%' },
-        }
       }
     },
   },
