@@ -1,64 +1,65 @@
 # Anleitung: Wie bringe ich diese Webseite ins Internet?
 
-Diese Datei erklärt dir Schritt für Schritt, wie du aus dem Code, den wir hier geschrieben haben, eine echte Webseite machst, die jeder aufrufen kann.
-
-## Das Grundverständnis
-Wir haben hier **Quellcode** (React). Browser können diesen Code nicht direkt verstehen. Er muss erst in "normales" HTML übersetzt werden. Diesen Vorgang nennt man **"Builden"**.
+Diese Datei erklärt dir Schritt für Schritt, wie du aus dem Code eine echte Webseite machst.
 
 ---
 
-## Methode A: Der einfachste Weg (Kostenlos via Netlify)
+## 🗺️ Die richtige Ordnerstruktur (WICHTIG!)
 
-Diese Methode ist am besten, wenn du noch nie mit Code gearbeitet hast.
+Damit GitHub deine Website automatisch bauen kann, müssen die Dateien **exakt** so liegen:
 
-### Schritt 1: Vorbereitung auf deinem Computer
-1.  Du musst ein kleines Hilfsprogramm installieren: **Node.js**.
-    *   Gehe auf [nodejs.org](https://nodejs.org/) und lade die "LTS"-Version herunter.
-    *   Installiere es einfach wie jedes andere Programm (immer auf "Weiter" klicken).
+```text
+Mein-Projekt-Ordner/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml      <-- MUSS GENAU HIER LIEGEN!
+├── lib/
+│   └── content.ts
+├── public/
+├── index.html
+├── App.tsx
+└── package.json
+```
 
-### Schritt 2: Die Dateien herunterladen
-1.  Lade alle Dateien aus diesem Chat herunter.
-2.  Erstelle einen neuen Ordner auf deinem Desktop, z.B. `linexio-website`.
-3.  Packe alle Dateien dort hinein.
-
-### Schritt 3: Die "Übersetzung" starten (Der Build)
-1.  Öffne das Programm **"Terminal"** (auf Mac) oder **"Eingabeaufforderung" / "PowerShell"** (auf Windows).
-2.  Du musst dem Terminal sagen, wo dein Ordner ist. Tippe ein:
-    `cd Desktop/linexio-website`
-    (Drücke Enter. Wenn dein Pfad anders heißt, musst du ihn anpassen).
-3.  Tippe nun nacheinander folgende zwei Befehle ein (warte jeweils, bis er fertig ist):
-    
-    *   Befehl 1: `npm install`
-        *(Das lädt die Werkzeuge herunter, die wir brauchen. Es werden viele Textzeilen durchlaufen, das ist normal.)*
-        
-    *   Befehl 2: `npm run build`
-        *(Das erstellt die fertige Webseite.)*
-
-4.  Wenn das fertig ist, schau in deinen Ordner `linexio-website`. Dort gibt es jetzt einen **neuen Unterordner namens `dist`**.
-    *   Dieser `dist` Ordner IST deine fertige Webseite!
-
-### Schritt 4: Online stellen
-1.  Gehe auf [app.netlify.com](https://app.netlify.com) und erstelle einen kostenlosen Account.
-2.  Nach dem Einloggen siehst du ein Feld: **"Drag and drop your site output folder here"**.
-3.  Zieh den **`dist`** Ordner (nicht den ganzen Projektordner, nur `dist`!) einfach in dieses Feld im Browser.
-4.  Warte ein paar Sekunden. **Fertig!** Netlify gibt dir sofort einen Link (z.B. `linexio-coolsite.netlify.app`), unter dem deine Seite erreichbar ist.
+**Hinweis:** Der Ordner `.github` beginnt mit einem Punkt. Auf Windows oder Mac kann dieser manchmal versteckt sein.
 
 ---
 
-## Methode B: Wenn du einen Profi beauftragst
+## Methode A: Automatisches Deployment via GitHub (Empfohlen)
 
-Wenn du jemanden hast, der das für dich macht, gib ihm einfach den Ordner mit allen Dateien (oder einen Link zu diesem Chat) und sage ihm folgendes:
+### Schritt 1: Automatisierung aktivieren
+Die Datei `.github/workflows/deploy.yml` sorgt dafür, dass GitHub deine Seite baut. Falls du sie manuell auf der GitHub-Webseite erstellst:
+1. Klicke auf **Add file** -> **Create new file**.
+2. Name: `.github/workflows/deploy.yml` (GitHub erstellt die Unterordner automatisch).
+3. Inhalt reinkopieren und speichern (**Commit changes**).
 
-> "Das ist ein Standard Vite-React Projekt mit Tailwind CSS.
-> Bitte einfach `npm install` und `npm run build` ausführen.
-> Der Output liegt dann im `dist` Ordner und kann auf jedem statischen Hoster (Vercel, Netlify, FTP) deployt werden."
+### Schritt 2: GitHub Pages Einstellungen
+1. Gehe zu deinem Repository auf GitHub.
+2. Klicke auf **Settings** -> **Pages**.
+3. Unter **Build and deployment** -> **Source** wähle: **GitHub Actions**.
 
 ---
 
-## Häufige Fragen
+## 🛠️ Fehlerbehebung (Troubleshooting)
 
-**Was mache ich, wenn ich später etwas ändern will?**
-Du änderst den Text im Code (z.B. in der `content.ts`), führst dann wieder `npm run build` aus und ziehst den neuen `dist` Ordner wieder zu Netlify. Die Seite wird dann sofort aktualisiert.
+### Problem: "Failed to push some refs" (Der 2. Push schlägt fehl)
+Das passiert oft, wenn du Dateien direkt auf der GitHub-Webseite geändert hast (z.B. die `deploy.yml` erstellt hast), aber diese Änderungen noch nicht auf deinem Computer sind.
 
-**Brauche ich einen Server?**
-Nein. Da wir eine "Statische Seite" gebaut haben, brauchst du keinen teuren Server. Kostenlose Hoster wie Netlify oder Vercel reichen völlig aus.
+**Lösung:**
+1. Öffne dein Terminal.
+2. Tippe: `git pull` (Das lädt die neuen Dateien von GitHub auf deinen PC).
+3. Jetzt kannst du wieder ganz normal `git push` machen.
+
+### Problem: "Dependencies lock file is not found"
+Dieser Fehler im GitHub Build-Prozess bedeutet, dass die Datei `package-lock.json` fehlt. 
+*   **Lösung:** Ich habe die `deploy.yml` so angepasst, dass sie auch ohne diese Datei funktioniert. Ein einfacher neuer Push sollte das Problem jetzt beheben.
+
+### Problem: Weiße Seite nach dem Deploy
+Da wir einen **HashRouter** nutzen, sollte alles funktionieren. Falls nicht, prüfe unter **Settings** -> **Pages**, ob die Website wirklich als "Live" angezeigt wird.
+
+---
+
+## Methode B: Manueller Upload via Netlify
+
+1.  **Build ausführen:** Tippe `npm run build` in deinem Terminal.
+2.  **Hochladen:** Ziehe den neu entstandenen Ordner **`dist`** per Drag & Drop auf [app.netlify.com](https://app.netlify.com).

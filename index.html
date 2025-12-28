@@ -14,24 +14,23 @@
               sans: ['Inter', 'sans-serif'],
             },
             colors: {
-              // Linexio 'Aurora Nocturne' Theme Mappings
               brand: {
                 50: '#ecfeff',
                 100: '#cffafe',
                 200: '#a5f3fc',
                 300: '#67e8f9',
-                400: '#22d3ee', // Accent Text
+                400: '#22d3ee',
                 500: '#06b6d4',
-                600: '#0891b2', // Accent Primary
-                700: '#0e7490', // Hover
+                600: '#0891b2',
+                700: '#0e7490',
                 800: '#155e75',
                 900: '#164e63',
                 950: '#083344',
               },
               dark: {
-                800: '#1f2937', // UI Primary
-                900: '#111827', // Background
-                950: '#030712', // Deep Background
+                800: '#1f2937',
+                900: '#111827',
+                950: '#030712',
               }
             },
             boxShadow: {
@@ -57,14 +56,12 @@
         --color-shadow: 8, 145, 178;
       }
       body {
-        /* The Single Canvas Gradient */
         background: radial-gradient(circle at 25% 25%, #1D2433 0%, #111827 60%);
-        background-attachment: fixed; /* Ensures gradient stays in place while scrolling */
+        background-attachment: fixed;
         color: var(--color-text-primary);
         overflow-x: hidden;
         min-height: 100vh;
       }
-      /* Custom Scrollbar */
       ::-webkit-scrollbar {
         width: 6px;
       }
@@ -75,8 +72,6 @@
         background: #374151;
         border-radius: 3px;
       }
-      
-      /* Glossy Effect from Brand Bible */
       .glossy-bar {
         position: relative;
         overflow: hidden;
@@ -92,19 +87,21 @@
         pointer-events: none;
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.1",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.25",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
-    "react": "https://aistudiocdn.com/react@^19.2.1",
-    "react/": "https://aistudiocdn.com/react@^19.2.1/"
-  }
-}
-</script>
-</head>
+    <script type="importmap">
+    {
+      "imports": {
+        "react-dom": "https://aistudiocdn.com/react-dom@^19.2.1",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+        "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.25",
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+        "react": "https://aistudiocdn.com/react@^19.2.1",
+        "react/": "https://aistudiocdn.com/react@^19.2.1/"
+      }
+    }
+    </script>
+    <!-- Zündschlüssel: Hier wird die React-App gestartet -->
+    <script type="module" src="./index.tsx"></script>
+  </head>
   <body>
     <div id="root"></div>
   </body>
