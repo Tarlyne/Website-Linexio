@@ -1,5 +1,11 @@
 import React from 'react';
 
+declare global {
+  interface Window {
+    __pendingScrollTarget?: string;
+  }
+}
+
 export interface FeatureItem {
   title: string;
   description: string;
@@ -11,10 +17,9 @@ export interface FeatureItem {
 export interface FeatureSection {
   title: string;
   description: string;
-  // Fix: Added 'stat' to supported visual types to match content.ts usage and FeatureDetail implementation
-  visualType: 'list' | 'card' | 'table' | 'check' | 'abstract' | 'stat'; // Controls the abstract UI mockup
-  items?: string[]; // Optional bullet points
-  image?: string; // Optional real screenshot URL (overrides visualType if present)
+  visualType: 'list' | 'card' | 'table' | 'check' | 'abstract' | 'stat'; 
+  items?: string[]; 
+  image?: string; 
 }
 
 export interface FeaturePageData {
@@ -39,7 +44,7 @@ export interface ContentStore {
   brand: {
     name: string;
     tagline: string;
-    logo?: string; // Optional: Base64 string or URL to the real logo image
+    logo?: string;
   };
   hero: {
     headline: string;

@@ -6,9 +6,8 @@
     <title>Linexio - Ihr Unterricht. Ihre Daten.</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CDN für die Live-Vorschau -->
+    <!-- Tailwind Play CDN für sofortiges Styling auch ohne lokalen Build-Server -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script>
       tailwind.config = {
         theme: {
@@ -53,63 +52,50 @@
       }
     </script>
 
-    <style>
-      :root {
-        --color-background: #111827;
-        --color-text-primary: #f3f4f6;
-        --color-shadow: 8, 145, 178;
+    <style type="text/tailwindcss">
+      @layer base {
+        body {
+          @apply bg-dark-900 text-slate-100 min-h-screen overflow-x-hidden;
+          background: radial-gradient(circle at 25% 25%, #1D2433 0%, #111827 60%);
+          background-attachment: fixed;
+        }
       }
-      body {
-        background: radial-gradient(circle at 25% 25%, #1D2433 0%, #111827 60%);
-        background-attachment: fixed;
-        color: var(--color-text-primary);
-        overflow-x: hidden;
-        min-height: 100vh;
+      @layer components {
+        .glossy-bar {
+          @apply relative overflow-hidden;
+        }
+        .glossy-bar::after {
+          content: '';
+          @apply absolute top-0 left-0 right-0 h-1/2 pointer-events-none;
+          background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+        }
       }
       ::-webkit-scrollbar {
         width: 6px;
       }
       ::-webkit-scrollbar-track {
-        background: #111827;
+        @apply bg-dark-900;
       }
       ::-webkit-scrollbar-thumb {
-        background: #374151;
-        border-radius: 3px;
-      }
-      .glossy-bar {
-        position: relative;
-        overflow: hidden;
-      }
-      .glossy-bar::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 50%;
-        background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
-        pointer-events: none;
+        @apply bg-slate-700 rounded-full;
       }
     </style>
-
-    <script type="importmap">
+  <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@19.0.0",
-    "react-dom": "https://esm.sh/react-dom@19.0.0",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "framer-motion": "https://esm.sh/framer-motion@11.11.17?external=react,react-dom",
-    "lucide-react": "https://esm.sh/lucide-react@0.460.0?external=react",
+    "react": "https://esm.sh/react@^19.2.3",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
     "vite": "https://esm.sh/vite@^7.3.0",
     "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
 }
 </script>
-  </head>
+</head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
+    <script type="module" src="./index.tsx"></script>
   </body>
 </html>

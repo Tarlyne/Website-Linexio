@@ -1,28 +1,10 @@
 import { LayoutDashboard, Users, Calculator, CheckSquare, Calendar, FolderOpen, GraduationCap } from 'lucide-react';
 import { FeatureItem, FeaturePageData, ContentStore } from '../types';
 
-/**
- * ANLEITUNG FÜR BILDER (FINAL):
- * 
- * Wir nutzen die "Public Folder"-Methode.
- * 
- * 1. Deine Bilder gehören in den Ordner "public" (bzw. "public/screenshots").
- * 2. Im Code referenzieren wir sie relativ zum Hauptverzeichnis (mit führendem Slash).
- * 
- * BEISPIEL:
- * Datei liegt in: project_root/public/logo.png
- * Pfad im Code:   "/logo.png"
- * 
- * HINWEIS:
- * Solange du die Bilder noch nicht hochgeladen hast, zeigt die App automatisch
- * die Vektor-Grafiken (Fallbacks) an. Sobald die Datei existiert, erscheint sie.
- */
-
 export const content: ContentStore = {
   brand: {
     name: "Linexio",
     tagline: "Ihr Unterricht. Ihre Daten. Ihr System.",
-    // logo: "/logo.png", // DEAKTIVIERT: Wir nutzen jetzt das Vektor-Logo direkt aus lib/assets.ts
   },
   hero: {
     headline: "Der digitale Lehrer-Assistent für das iPad.",
@@ -214,7 +196,7 @@ export const content: ContentStore = {
     "sitzplan": {
       slug: "sitzplan",
       hero: {
-        headline: "Klassen management leicht gemacht.",
+        headline: "Klassenmanagement leicht gemacht.",
         subheadline: "Visuelle Sitzpläne, faire Zufallsgeneratoren und intelligente Gruppenbildung.",
         badge: "Tools"
       },
@@ -247,7 +229,7 @@ export const content: ContentStore = {
       sections: [
         {
           title: "Die digitale Schülerakte",
-          description: "Jeder Schüler hat eine eigene Akte. Hinterlegen Sie Stammdaten, Kontaktinfos der Eltern und Fotos. Archivieren Sie alte Klassen mit einem klick.",
+          description: "Jeder Schüler hat eine eigene Akte. Hinterlegen Sie Stammdaten, Kontaktinfos der Eltern und Fotos. Archivieren Sie alte Klassen mit einem Klick.",
           visualType: "card",
           image: "/screenshots/schuelerakte.webp"
         },
@@ -284,6 +266,6 @@ export const content: ContentStore = {
   },
   pricing: {
     headline: "Linexio ist kostenlos nutzbar. Kein Abo, keine versteckten Kosten.",
-    description: "Sämtliche Funktionen sind kostenfrei und uneingeschränkend nutzbar. Gefällt Ihnen die App, würden wir uns über eine Unterstüzung freuen."
+    description: "Sämtliche Funktionen sind kostenfrei und uneingeschränkt nutzbar. Gefällt Ihnen die App, würden wir uns über eine Unterstützung freuen."
   }
 };
