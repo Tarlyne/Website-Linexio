@@ -2,16 +2,27 @@ import { LayoutDashboard, Users, Calculator, CheckSquare, Calendar, FolderOpen, 
 import { FeatureItem, FeaturePageData, ContentStore } from '../types';
 
 /**
- * HINWEIS: Alle Bildpfade nutzen jetzt den Präfix /Website-Linexio/images/
- * Dies stellt sicher, dass GitHub Pages die Dateien im Subfolder korrekt findet.
+ * Dynamische Ermittlung des Pfades für GitHub Pages.
+ * Nutzt Optional Chaining, um Abstürze zu verhindern, wenn env undefined ist.
  */
-const BASE_IMG_PATH = "/Website-Linexio/images/";
+const getAssetPath = (path: string) => {
+  // Sicherer Zugriff auf BASE_URL mit Fallback auf '/'
+  const base = (import.meta as any).env?.BASE_URL || '/';
+  
+  // Saubere Zusammenführung von Base und Pfad
+  const cleanBase = base.endsWith('/') ? base : `${base}/`;
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${cleanBase}${cleanPath}`;
+};
+
+// Nutzt den neuen Ordnernamen 'images'
+const IMG_FOLDER = "images/";
 
 export const content: ContentStore = {
   brand: {
     name: "Linexio",
     tagline: "Ihr Unterricht. Ihre Daten. Ihr System.",
-    logo: `${BASE_IMG_PATH}logo.png`
+    logo: getAssetPath(`${IMG_FOLDER}logo.png`)
   },
   hero: {
     headline: "Der digitale Lehrer-Assistent für das iPad.",
@@ -88,7 +99,7 @@ export const content: ContentStore = {
           title: "Offline-First Ansatz",
           description: "Linexio ist keine klassische Cloud-App. Alle Daten liegen auf Ihrem iPad. Wenn Sie die App schließen, sind die Daten sicher auf Ihrem Gerät verschlossen.",
           visualType: "stat",
-          image: `${BASE_IMG_PATH}security.webp` 
+          image: getAssetPath(`${IMG_FOLDER}security.webp`) 
         },
         {
           title: "Lokale Backups & Verschlüsselung",
@@ -120,7 +131,7 @@ export const content: ContentStore = {
           title: "Alle Systeme, volle Flexibilität",
           description: "Linexio beherrscht mehrere Notensysteme. Erstellen Sie Ihre Notenberechnung nach Ihren Vorstellungen - inklusive Gewichtung für jeden Eintrag.",
           visualType: "table",
-          image: `${BASE_IMG_PATH}notenverwaltung.webp`
+          image: getAssetPath(`${IMG_FOLDER}notenverwaltung.webp`)
         },
         {
           title: "Klausuren & Notenschlüssel",
@@ -146,7 +157,7 @@ export const content: ContentStore = {
           title: "Status-Tracking in Echtzeit",
           description: "Erfassen Sie blitzschnell Abhaklisten - mit Erinnerung auf dem Dashboard, wer noch etwas abzugeben hat.",
           visualType: "check",
-          image: `${BASE_IMG_PATH}checklisten.webp`
+          image: getAssetPath(`${IMG_FOLDER}checklisten.webp`)
         },
         {
           title: "Listen für alles",
@@ -168,7 +179,7 @@ export const content: ContentStore = {
           title: "Intelligente Übersicht",
           description: "Sehen Sie sofort, wie viele Klassen und Schüler Sie betreuen. Das Dashboard warnt Sie proaktiv vor offenen Aufgaben, wie z.B. ausstehenden Geldeinsammlungen oder längst fälligen Backups.",
           visualType: "stat",
-          image: `${BASE_IMG_PATH}dashboard.webp`
+          image: getAssetPath(`${IMG_FOLDER}dashboard.webp`)
         },
         {
           title: "Geburtstags-Radar & Ferien",
@@ -190,7 +201,7 @@ export const content: ContentStore = {
           title: "Der Lehrer-Kalender",
           description: "Verwalten Sie Klausurtermine, Konferenzen oder Elterngespräche. Linexio erinnert Sie daran, wenn für eine Klausurklasse Nachteilsausgleiche zu beachten sind.",
           visualType: "card",
-          image: `${BASE_IMG_PATH}calendar.webp`
+          image: getAssetPath(`${IMG_FOLDER}calendar.webp`)
         },
         {
           title: "Digitales Notizbuch",
@@ -212,7 +223,7 @@ export const content: ContentStore = {
           title: "Visueller Sitzplan-Editor",
           description: "Gestalten Sie im Raster Ihren individuellen Sitzplan für jede Lerngruppe. Schieben Sie Schüler per Drag & Drop auf ihre Plätze. 'Pinnen' Sie Schüler fest, die vorne sitzen müssen (z.B. wegen einer Sehschwäche), oder lassen Sie sich die Sitzordnung zufällig erstellen.",
           visualType: "abstract",
-          image: `${BASE_IMG_PATH}sitzplan.webp`
+          image: getAssetPath(`${IMG_FOLDER}sitzplan.webp`)
         },
         {
           title: "KI-Gruppeneinteilung",
@@ -238,7 +249,7 @@ export const content: ContentStore = {
           title: "Die digitale Schülerakte",
           description: "Jeder Schüler hat eine eigene Akte. Hinterlegen Sie Stammdaten, Kontaktinfos der Eltern und Fotos. Archivieren Sie alte Klassen mit einem Klick.",
           visualType: "card",
-          image: `${BASE_IMG_PATH}schuelerakte.webp`
+          image: getAssetPath(`${IMG_FOLDER}schuelerakte.webp`)
         },
         {
           title: "Förderbedarf & NTA",
@@ -260,13 +271,13 @@ export const content: ContentStore = {
           title: "Spielerischer Quiz-Modus",
           description: "Sehen Sie ein Foto und erraten Sie den Namen – oder umgekehrt. Das direkte Feedback hilft Ihnen dabei. Fordern Sie sich selbst heraus in vier unterschiedlichen Varianten!",
           visualType: "stat",
-          image: `${BASE_IMG_PATH}namen.webp`
+          image: getAssetPath(`${IMG_FOLDER}namen.webp`)
         },
         {
           title: "Karteikarten-System",
           description: "Wischen Sie durch digitale Karteikarten Ihrer Schüler. Ideal für die 5 Minuten vor Unterrichtsbeginn oder in Freistunden.",
           visualType: "card",
-          image: `${BASE_IMG_PATH}namen2.webp`
+          image: getAssetPath(`${IMG_FOLDER}namen2.webp`)
         }
       ]
     }

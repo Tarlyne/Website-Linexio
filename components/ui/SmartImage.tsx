@@ -33,6 +33,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   };
 
   const handleError = () => {
+    console.warn(`[SmartImage] Fehler beim Laden von: ${currentSrc}`);
     setHasError(true);
     setIsLoading(false);
   };
