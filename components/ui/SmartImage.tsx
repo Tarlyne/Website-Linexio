@@ -8,10 +8,7 @@ interface SmartImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>
 }
 
 /**
- * SmartImage löst das "GitHub Pages Pfad-Problem".
- * Auf GitHub Pages liegen Projekte oft unter tarlyne.github.io/PROJEKTNAME/
- * Ein normaler Pfad wie "/screenshots/bild.png" leitet zur Root (tarlyne.github.io) um -> 404.
- * Die Lösung ist die Verwendung von relativen Pfaden ohne führenden Slash.
+ * SmartImage Komponente zur Anzeige von Bildern mit Loading-States und Fallbacks.
  */
 export const SmartImage: React.FC<SmartImageProps> = ({ 
   src, 
@@ -22,13 +19,11 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   ...props 
 }) => {
   const [currentSrc, setCurrentSrc] = useState<string | undefined>(src);
-  const [attempt, setAttempt] = useState(0);
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setCurrentSrc(src);
-    setAttempt(0);
     setHasError(false);
     setIsLoading(true);
   }, [src]);
@@ -38,22 +33,8 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   };
 
   const handleError = () => {
-    if (!src || hasError) return;
-
-    const nextAttempt = attempt + 1;
-    setAttempt(nextAttempt);
-
-    if (nextAttempt === 1) {
-      // Versuch 1: Entferne den führenden Slash, um den Pfad relativ zu machen.
-      // Aus "/screenshots/bild.webp" wird "screenshots/bild.webp".
-      // Auf GitHub Pages (z.B. .../linexio-marketing/) sucht der Browser dann im richtigen Unterordner.
-      const relativePath = src.startsWith('/') ? src.slice(1) : src;
-      setCurrentSrc(relativePath);
-    } else {
-      // Alles fehlgeschlagen
-      setHasError(true);
-      setIsLoading(false);
-    }
+    setHasError(true);
+    setIsLoading(false);
   };
 
   if (hasError || !currentSrc) {

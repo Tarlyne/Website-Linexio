@@ -2,11 +2,10 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
-// trigger rebuild
 export default defineConfig({
   plugins: [react()],
-  // Leerer String sorgt für komplett relative Pfade in der index.html (best practice für GH Pages)
-  base: '', 
+  // Base URL auf den Repository-Namen setzen für korrektes Asset-Mapping auf GitHub Pages
+  base: '/Website-Linexio/', 
   build: {
     outDir: 'dist',
     emptyOutDir: true,
