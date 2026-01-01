@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { content } from '../../lib/content';
 import { useLocation, useNavigate, Link } from '../../lib/router';
@@ -60,7 +61,7 @@ export const Footer: React.FC = () => {
             <h4 className="text-white font-semibold mb-4">Kontakt</h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
-                <a href="mailto:hallo@linexio.app" className="hover:text-brand-400 transition-colors">
+                <a href="mailto:linexio@gmx.de" className="hover:text-brand-400 transition-colors">
                   Hilfe & Kontakt
                 </a>
               </li>

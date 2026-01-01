@@ -1,6 +1,6 @@
+import { ArrowRight } from 'lucide-react';
 import React from 'react';
 import { content } from '../../lib/content';
-import { ArrowRight } from 'lucide-react';
 import { Link } from '../../lib/router'; // Updated Import
 
 // Helper component to handle conditional rendering safely for TypeScript
@@ -24,9 +24,10 @@ export const BentoGrid: React.FC = () => {
     <section id="features" className="py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center md:text-left relative z-10">
-          <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-brand-300 via-cyan-100 to-brand-300 pb-1">Der Allrounder für Lehrer.</h2>
+          <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-brand-300 via-cyan-100 to-brand-300 pb-1">Ihr digitaler Werkzeugkasten.</h2>
           <p className="text-slate-400 max-w-xl">
             Linexio vereint Notenverwaltung, Unterricht-Tools, Termine und vieles mehr in einer einzigen App.
+            <span className="block mt-2 text-brand-400/90 font-medium">Tippen Sie auf eine Karte, um mehr zu erfahren.</span>
           </p>
         </div>
 
@@ -50,9 +51,13 @@ export const BentoGrid: React.FC = () => {
                  <feature.icon className="w-32 h-32 text-brand-500" />
               </div>
               
-              <div className="relative z-10 h-full flex flex-col justify-between">
-                <div className="flex justify-between items-start">
-                    <div className="mb-4 bg-dark-900/80 w-fit p-3 rounded-xl border border-slate-700/50 group-hover:border-brand-500/30 group-hover:text-brand-400 transition-colors text-slate-300 shadow-lg backdrop-blur-md">
+              {/* 
+                 REMOVED justify-between to ensure titles align horizontally.
+                 By using a standard flex-col flow, all h3 titles start at the same vertical offset.
+              */}
+              <div className="relative z-10 h-full flex flex-col">
+                <div className="flex justify-between items-start mb-6">
+                    <div className="bg-dark-900/80 w-fit p-3 rounded-xl border border-slate-700/50 group-hover:border-brand-500/30 group-hover:text-brand-400 transition-colors text-slate-300 shadow-lg backdrop-blur-md">
                         <feature.icon className="w-6 h-6" />
                     </div>
                     {feature.slug && (
@@ -62,7 +67,7 @@ export const BentoGrid: React.FC = () => {
                     )}
                 </div>
                 
-                <div>
+                <div className="flex flex-col">
                   <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
                   <p className="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
                 </div>

@@ -1,9 +1,35 @@
+
 import React from 'react';
 import { Button } from '../ui/Button';
-import { ArrowRight, Download, WifiOff, ShieldCheck, Tablet } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Download, 
+  WifiOff, 
+  ShieldCheck, 
+  Tablet, 
+  Heart, 
+  CloudOff,
+  UserCheck,
+  Save,
+  RefreshCw
+} from 'lucide-react';
 import { motion } from 'framer-motion';
 import { content } from '../../lib/content';
-import { smoothScrollTo } from '../../lib/scroll'; // Import new utility
+import { smoothScrollTo } from '../../lib/scroll';
+
+/**
+ * Mapping für Badges zu Icons
+ */
+const badgeIconMap: Record<string, React.ComponentType<any>> = {
+  "Optimiert für Tablets": Tablet,
+  "100% Offline": WifiOff,
+  "DSGVO-Konform": ShieldCheck,
+  "Kostenlos & Werbefrei": Heart,
+  "Ohne Cloud-Zwang": CloudOff,
+  "Kein Benutzerkonto nötig": UserCheck,
+  "Sichere Backup-Funktion": Save,
+  "Regelmäßige Updates": RefreshCw
+};
 
 export const Hero: React.FC = () => {
 
@@ -13,12 +39,6 @@ export const Hero: React.FC = () => {
 
   return (
     <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
-      {/* 
-         NOTE: Background Aurora elements have been moved to App.tsx 
-         to create a seamless "Single Canvas" experience without 
-         visual cuts or lines between sections.
-      */}
-
       {/* Content Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
@@ -56,16 +76,16 @@ export const Hero: React.FC = () => {
               </Button>
             </div>
 
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4 gap-y-2 text-sm text-slate-500 pt-6">
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-dark-800/50 border border-slate-800/50">
-                <Tablet className="w-4 h-4 text-brand-500" /> iPad Optimiert
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-dark-800/50 border border-slate-800/50">
-                <WifiOff className="w-4 h-4 text-brand-500" /> 100% Offline
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-dark-800/50 border border-slate-800/50">
-                <ShieldCheck className="w-4 h-4 text-brand-500" /> Datenschutz
-              </div>
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 gap-y-3 text-sm text-slate-400 pt-8">
+              {content.hero.badges.map((badgeText, idx) => {
+                const Icon = badgeIconMap[badgeText] || ShieldCheck;
+                return (
+                  <div key={idx} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-dark-800/40 border border-slate-800/50 backdrop-blur-sm hover:border-brand-500/30 transition-colors">
+                    <Icon className="w-4 h-4 text-brand-500" />
+                    <span className="whitespace-nowrap">{badgeText}</span>
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
 
@@ -122,20 +142,16 @@ export const Hero: React.FC = () => {
                                  </div>
                              ))}
                          </div>
-                         {/* Gradient fade at bottom of list */}
                          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-dark-800 to-transparent"></div>
                     </div>
                   </div>
                 </div>
              </div>
 
-             {/* Decorative Elements around tablet */}
              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[90%] bg-brand-500/10 blur-3xl rounded-full"></div>
           </motion.div>
         </div>
       </div>
-      
-      {/* Removed the bottom gradient overlay to fix the visible cut/line issue */}
     </section>
   );
 };

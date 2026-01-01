@@ -1,6 +1,9 @@
+
 import React from 'react';
 import { Share, MoreVertical, Download } from 'lucide-react';
 import { content } from '../../lib/content';
+import { Logo } from '../../lib/assets';
+import { Button } from '../ui/Button';
 
 export const InstallationGuide: React.FC = () => {
   return (
@@ -54,18 +57,23 @@ export const InstallationGuide: React.FC = () => {
                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
                
                {/* App Icon Presentation */}
-               <div className="text-center z-10 px-6">
-                 <div className="w-24 h-24 bg-gradient-to-br from-brand-500 to-brand-700 rounded-2xl mx-auto mb-6 shadow-2xl shadow-brand-500/20 flex items-center justify-center relative overflow-hidden">
-                    {/* Linexio Logo Abstract Representation */}
-                    <div className="absolute top-0 right-0 w-12 h-12 bg-white/20 blur-xl rounded-full"></div>
-                    <div className="text-4xl font-bold text-white tracking-tighter">Lx</div>
+               <div className="text-center z-10 px-6 flex flex-col items-center">
+                 <div className="relative mb-8 group">
+                    {/* Glow effect behind logo */}
+                    <div className="absolute inset-0 bg-brand-500/20 blur-3xl rounded-full scale-150 group-hover:scale-[1.8] transition-transform duration-700 -z-10" />
+                    <Logo className="w-32 h-32 text-white drop-shadow-2xl" accentColor="#22d3ee" />
                  </div>
-                 <h3 className="text-2xl font-bold text-white mb-2">{content.brand.name}</h3>
-                 <p className="text-slate-400 text-sm mb-6">linexio.app</p>
-                 <button className="bg-white text-dark-950 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-slate-200 transition-colors flex items-center justify-center gap-2 mx-auto">
-                   <Download className="w-4 h-4" />
-                   Jetzt Installieren
-                 </button>
+                 
+                 <h3 className="text-3xl font-bold text-white mb-8 tracking-tight">{content.brand.name}</h3>
+                 
+                 <Button 
+                   variant="primary" 
+                   size="lg" 
+                   icon={Download}
+                   className="shadow-xl"
+                 >
+                   Jetzt installieren
+                 </Button>
                </div>
             </div>
           </div>

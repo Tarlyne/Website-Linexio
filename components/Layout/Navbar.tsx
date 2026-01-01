@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Download, ChevronLeft } from 'lucide-react';
 import { Button } from '../ui/Button';
@@ -18,6 +19,8 @@ export const Navbar: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
+    // Initial check in case page starts scrolled (e.g. browser refresh)
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -39,7 +42,7 @@ export const Navbar: React.FC = () => {
   return (
     <nav className={`
       fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b
-      ${isScrolled || !isHome
+      ${isScrolled
         ? 'bg-dark-900/80 backdrop-blur-xl border-white/5 py-3 shadow-lg shadow-black/20' 
         : 'bg-transparent border-transparent py-5'}
     `}>
@@ -68,8 +71,9 @@ export const Navbar: React.FC = () => {
 
           <div className="hidden md:flex items-center gap-6">
             <a href="#features" onClick={(e) => handleNavClick(e, 'features')} className="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors cursor-pointer">Features</a>
-            <Link to="/feature/security" className="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors">Datensicherheit</Link>
+            <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors cursor-pointer">Das Projekt</a>
             <a href="#how-it-works" onClick={(e) => handleNavClick(e, 'how-it-works')} className="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors cursor-pointer">So geht's</a>
+            <Link to="/feature/security" className="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors">Datensicherheit</Link>
           </div>
 
           <div className="hidden md:flex items-center gap-3">
@@ -90,8 +94,9 @@ export const Navbar: React.FC = () => {
       {mobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-dark-900 border-b border-slate-800 p-4 flex flex-col gap-4 shadow-2xl md:hidden animate-in slide-in-from-top-5">
           <a href="#features" onClick={(e) => handleNavClick(e, 'features')} className="text-slate-300 hover:text-brand-500 py-2">Features</a>
-          <Link to="/feature/security" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 hover:text-brand-500 py-2">Datenschutz</Link>
+          <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className="text-slate-300 hover:text-brand-500 py-2">Das Projekt</a>
           <a href="#how-it-works" onClick={(e) => handleNavClick(e, 'how-it-works')} className="text-slate-300 hover:text-brand-500 py-2">So geht's</a>
+          <Link to="/feature/security" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 hover:text-brand-500 py-2">Datensicherheit</Link>
           <div className="h-px bg-slate-800 my-1" />
           <Button fullWidth variant="primary" icon={Download} onClick={handleAppClick}>Zur App</Button>
         </div>

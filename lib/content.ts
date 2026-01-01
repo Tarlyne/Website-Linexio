@@ -1,28 +1,29 @@
-import { LayoutDashboard, Users, Calculator, CheckSquare, Calendar, FolderOpen, GraduationCap } from 'lucide-react';
+
+import { 
+  LayoutDashboard, 
+  Users, 
+  Calculator, 
+  CheckSquare, 
+  Calendar, 
+  FolderOpen, 
+  GraduationCap, 
+  LayoutGrid, 
+  Dices, 
+  Settings 
+} from 'lucide-react';
 import { FeatureItem, FeaturePageData, ContentStore } from '../types';
 
 /**
- * Dynamische Ermittlung des Pfades für GitHub Pages.
- * Nutzt Optional Chaining, um Abstürze zu verhindern, wenn env undefined ist.
+ * Basis-URL für externe Assets (Bilder).
+ * Die Bilder liegen im offiziellen Linexio-Assets Repository.
  */
-const getAssetPath = (path: string) => {
-  // Sicherer Zugriff auf BASE_URL mit Fallback auf '/'
-  const base = (import.meta as any).env?.BASE_URL || '/';
-  
-  // Saubere Zusammenführung von Base und Pfad
-  const cleanBase = base.endsWith('/') ? base : `${base}/`;
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  return `${cleanBase}${cleanPath}`;
-};
-
-// Nutzt den neuen Ordnernamen 'images'
-const IMG_FOLDER = "images/";
+const EXTERNAL_IMAGE_BASE = "https://raw.githubusercontent.com/tarlyne/linexio-assets/main/";
 
 export const content: ContentStore = {
   brand: {
     name: "Linexio",
     tagline: "Ihr Unterricht. Ihre Daten. Ihr System.",
-    logo: getAssetPath(`${IMG_FOLDER}logo.png`)
+    logo: undefined 
   },
   hero: {
     headline: "Der digitale Lehrer-Assistent für das iPad.",
@@ -30,9 +31,14 @@ export const content: ContentStore = {
     ctaPrimary: "Linexio installieren",
     ctaSecondary: "Features ansehen",
     badges: [
-      "iPad Optimiert",
+      "Optimiert für Tablets",
       "100% Offline",
-      "DSGVO Konform"
+      "DSGVO-Konform",
+      "Kostenlos & Werbefrei",
+      "Ohne Cloud-Zwang",
+      "Kein Benutzerkonto nötig",
+      "Sichere Backup-Funktion",
+      "Regelmäßige Updates"
     ]
   },
   features: [
@@ -44,11 +50,32 @@ export const content: ContentStore = {
       slug: "noten"
     },
     {
+      title: "Sitzplan",
+      description: "Visueller Editor für Ihr Klassenzimmer. Schieben Sie Schüler per Drag & Drop auf ihre Plätze.",
+      icon: LayoutGrid,
+      colSpan: 1,
+      slug: "sitzplan"
+    },
+    {
       title: "Checklisten",
-      description: "Erstellen Sie Listen für Hausaufgaben, Elternbriefe oder Kopiergeld und behalten Sie den Status im Blick.",
+      description: "Erstellen Sie Listen für Hausaufgaben, Elternbriefe oder Kopiergeld.",
       icon: CheckSquare,
       colSpan: 1,
       slug: "checklisten"
+    },
+    {
+      title: "Gruppeneinteilung",
+      description: "Bilden Sie in Sekunden homogene oder heterogene Gruppen nach Ihren Kriterien.",
+      icon: Users,
+      colSpan: 1,
+      slug: "gruppen"
+    },
+    {
+      title: "Zufallswahl",
+      description: "Der faire Aufruf-Generator. Wählt Schüler zufällig aus und merkt sich, wer schon dran war.",
+      icon: Dices,
+      colSpan: 1,
+      slug: "zufall"
     },
     {
       title: "Das Dashboard",
@@ -65,14 +92,7 @@ export const content: ContentStore = {
       slug: "persoenlich"
     },
     {
-      title: "Sitzplan & Gruppen",
-      description: "Erstellen Sie Sitzpläne und Gruppen ganz nach Ihren Vorstellungen und Vorgaben.",
-      icon: Users,
-      colSpan: 1,
-      slug: "sitzplan"
-    },
-    {
-      title: "Digitale Schülerakte",
+      title: "Schülerakte",
       description: "Alles an einem Ort: Nachteilsausgleich, Förderbedarf, Notizen und Elternkontakte.",
       icon: FolderOpen,
       colSpan: 1,
@@ -80,10 +100,17 @@ export const content: ContentStore = {
     },
     {
       title: "Namen lernen",
-      description: "Lernen Sie die Namen Ihrer SchülerInnen als Karteikarten oder mit einem Quiz.",
+      description: "Lernen Sie die Namen Ihrer SchülerInnen spielerisch mit Quiz oder Karteikarten.",
       icon: GraduationCap,
       colSpan: 1,
       slug: "namen"
+    },
+    {
+      title: "Einstellungen",
+      description: "Themes, Backups, Notenschlüssel und vieles mehr.",
+      icon: Settings,
+      colSpan: 1,
+      slug: "einstellungen"
     }
   ],
   pages: {
@@ -97,143 +124,73 @@ export const content: ContentStore = {
       sections: [
         {
           title: "Offline-First Ansatz",
-          description: "Linexio ist keine klassische Cloud-App. Alle Daten liegen auf Ihrem iPad. Wenn Sie die App schließen, sind die Daten sicher auf Ihrem Gerät verschlossen.",
+          description: "Linexio ist keine klassische Cloud-App. Alle Daten liegen physisch auf dem Speicherchip Ihres iPads. Wenn Sie die App schließen, sind die Daten sicher auf Ihrem Gerät verschlossen.",
           visualType: "stat",
-          image: getAssetPath(`${IMG_FOLDER}security.webp`) 
+          image: `${EXTERNAL_IMAGE_BASE}security.webp`
         },
         {
-          title: "Lokale Backups & Verschlüsselung",
-          description: "Erstellen Sie hochverschlüsselte Backups, die Sie extern speichern können. Nur Sie kennen das Passwort zum Entschlüsseln.",
+          title: "Backup & Biometrie",
+          description: "Erstellen Sie hochverschlüsselte Backups für externe Speicherorte und schützen Sie die App im Lehrerzimmer per FaceID oder TouchID.",
           visualType: "check",
-          items: ["AES-256 Verschlüsselung", "Kein Cloud-Zwang", "Volle Datenhoheit"]
+          items: ["AES-256 Verschlüsselung", "FaceID / TouchID Support", "Vollständige Datenhoheit"]
         },
         {
-          title: "Fokussieren auf Schüler",
-          description: "Blenden Sie beim Besprechen der Noten alle anderen Schüler aus, so dass Sie in Ruhe mit dem aktuellen Schüler alles durchgehen können, ohne die Noten der anderen zu zeigen.",
-          visualType: "card"
-        },
-        {
-          title: "Der KI-Datenschutz-Wächter",
-          description: "Wenn Sie intelligente Funktionen nutzen (z.B. Sitzpläne), entfernt Linexio vorher alle Namen und ersetzt sie durch Platzhalter (z.B. 'Schüler A'). Sensible Schülerdaten verlassen somit niemals das Gerät und die KI kann keinen Bezug zu einer realen Person ziehen.",
-          visualType: "abstract"
+          title: "Der Datenschutz-Wächter",
+          description: "Unser einzigartiges Konzept anonymisiert Daten, bevor sie (optional) für intelligente Funktionen genutzt werden. Die KI erhält nur Platzhalter.",
+          visualType: "abstract",
+          items: ["Anonymisierte KI-Anfragen", "Kein Tracking", "DSGVO-konform"]
         }
       ]
     },
     "noten": {
       slug: "noten",
       hero: {
-        headline: "Fair, transparent, präzise.",
-        subheadline: "Von der mündlichen Note bis zum Zeugnis. Linexio nimmt Ihnen das Rechnen ab und sorgt für Übersichtlichkeit.",
+        headline: "Fair, transparent und präzise.",
+        subheadline: "Von der mündlichen Note bis zum Zeugnis. Linexio nimmt Ihnen das Rechnen ab und sorgt für Rechtssicherheit durch transparente Gewichtung.",
         badge: "Notenverwaltung"
       },
       sections: [
         {
-          title: "Alle Systeme, volle Flexibilität",
-          description: "Linexio beherrscht mehrere Notensysteme. Erstellen Sie Ihre Notenberechnung nach Ihren Vorstellungen - inklusive Gewichtung für jeden Eintrag.",
+          title: "Intelligente Berechnung",
+          description: "Linexio beherrscht sowohl das klassische Notensystem (1-6) als auch das Oberstufen-Punktesystem (0-15).",
           visualType: "table",
-          image: getAssetPath(`${IMG_FOLDER}notenverwaltung.webp`)
+          image: `${EXTERNAL_IMAGE_BASE}noten.webp`,
+          items: ["Individuelle Gewichtung", "Rohpunkte-Rechner", "Numpad-Eingabe für iPad"]
         },
         {
-          title: "Klausuren & Notenschlüssel",
-          description: "Legen Sie Klausuren mit maximalen Rohpunkten an. Der individuell einstellbare Notenschlüssel berechnet die Note sofort. Unsere Numpad-Eingabe sorgt für blitzschnelles Eintragen.",
-          visualType: "abstract"
-        },
-        {
-          title: "PDF-Export für Ihre Unterlagen",
-          description: "Generieren Sie mit einem Klick detaillierte Leistungsübersichten für jeden Schüler. Inklusive Notenentwicklung und Unterschriftenfeld – perfekt vorbereitet für jedes Gespräch.",
-          visualType: "card"
-        }
-      ]
-    },
-    "checklisten": {
-      slug: "checklisten",
-      hero: {
-        headline: "Nie wieder Zettelwirtschaft.",
-        subheadline: "Ob Kopiergeld, Hausaufgaben oder Elternbriefe – behalten Sie den Überblick, wer was abgegeben hat.",
-        badge: "Organisation"
-      },
-      sections: [
-        {
-          title: "Status-Tracking in Echtzeit",
-          description: "Erfassen Sie blitzschnell Abhaklisten - mit Erinnerung auf dem Dashboard, wer noch etwas abzugeben hat.",
-          visualType: "check",
-          image: getAssetPath(`${IMG_FOLDER}checklisten.webp`)
-        },
-        {
-          title: "Listen für alles",
-          description: "Erstellen Sie blitzschnell neue Listen für jeden Anlass. Klassenfahrt-Geld, Rücklaufzettel, Buchrückgabe oder Material-Check.",
+          title: "Gewichtung & Transparenz",
+          description: "Sie entscheiden, wie viel zählt. Stellen Sie das Verhältnis von schriftlichen zu mündlichen Leistungen präzise ein.",
           visualType: "list",
-          items: ["Hausaufgaben", "Elternbrief-Rücklauf", "Kopiergeld einsammeln"]
+          items: ["Frei definierbare Kategorien", "Notentendenzen (+/-)", "Automatischer Notenschlüssel"]
+        },
+        {
+          title: "Der Elternsprechtag-Retter",
+          description: "Generieren Sie mit einem Klick detaillierte Leistungsübersichten für jeden Schüler. Dokumentieren Sie die Notenentwicklung rechtssicher.",
+          visualType: "check",
+          items: ["PDF-Export pro Schüler", "Unterschriftenfelder integriert", "Klausur-Übersichten"]
         }
       ]
     },
     "dashboard": {
       slug: "dashboard",
       hero: {
-        headline: "Das Cockpit für Ihren Schultag.",
-        subheadline: "Starten Sie gut informiert in den Morgen. Alles Wichtige auf einen Blick, ohne langes Suchen.",
-        badge: "Übersicht"
+        headline: "Ihr Cockpit für den Schultag.",
+        subheadline: "Alles Wichtige auf einen Blick. Starten Sie gut informiert in den Morgen, ohne lange suchen zu müssen.",
+        badge: "Dashboard"
       },
       sections: [
         {
-          title: "Intelligente Übersicht",
-          description: "Sehen Sie sofort, wie viele Klassen und Schüler Sie betreuen. Das Dashboard warnt Sie proaktiv vor offenen Aufgaben, wie z.B. ausstehenden Geldeinsammlungen oder längst fälligen Backups.",
+          title: "Proaktive Informationen",
+          description: "Vom Geburtstags-Radar über den Ferien-Countdown bis hin zu offenen Aufgaben – das Dashboard denkt mit.",
           visualType: "stat",
-          image: getAssetPath(`${IMG_FOLDER}dashboard.webp`)
+          image: `${EXTERNAL_IMAGE_BASE}dashboard.webp`,
+          items: ["Geburtstags-Radar (7 Tage)", "Ferien-Countdown", "Backup-Erinnerung"]
         },
         {
-          title: "Geburtstags-Radar & Ferien",
-          description: "Verpassen Sie nie wieder einen Geburtstag. Linexio zeigt Ihnen die Geburtstagskinder der nächsten 7 Tage an. Ein automatischer Countdown zählt die Tage bis zu den nächsten Ferien in Ihrem Bundesland.",
-          visualType: "list",
-          items: ["Geburtstage (7 Tage Vorschau)", "Ferien-Countdown (Bundeslandspezifisch)", "Tageszitat zur Motivation"]
-        }
-      ]
-    },
-    "persoenlich": {
-      slug: "persoenlich",
-      hero: {
-        headline: "Organisieren Sie sich selbst.",
-        subheadline: "Ihr persönlicher Bereich für Termine, Notizen und alles, was nicht vergessen werden darf.",
-        badge: "Persönliches"
-      },
-      sections: [
-        {
-          title: "Der Lehrer-Kalender",
-          description: "Verwalten Sie Klausurtermine, Konferenzen oder Elterngespräche. Linexio erinnert Sie daran, wenn für eine Klausurklasse Nachteilsausgleiche zu beachten sind.",
-          visualType: "card",
-          image: getAssetPath(`${IMG_FOLDER}calendar.webp`)
-        },
-        {
-          title: "Digitales Notizbuch",
-          description: "Halten Sie Gedanken fest, protokollieren Sie Dienstbesprechungen oder speichern Sie Ideen für den Unterricht.",
-          visualType: "list",
-          items: ["Dienstbesprechungen", "Elterngesprächs-Protokolle", "Unterrichtsideen"]
-        }
-      ]
-    },
-    "sitzplan": {
-      slug: "sitzplan",
-      hero: {
-        headline: "Klassenmanagement leicht gemacht.",
-        subheadline: "Visuelle Sitzpläne, faire Zufallsgeneratoren und intelligente Gruppenbildung.",
-        badge: "Tools"
-      },
-      sections: [
-        {
-          title: "Visueller Sitzplan-Editor",
-          description: "Gestalten Sie im Raster Ihren individuellen Sitzplan für jede Lerngruppe. Schieben Sie Schüler per Drag & Drop auf ihre Plätze. 'Pinnen' Sie Schüler fest, die vorne sitzen müssen (z.B. wegen einer Sehschwäche), oder lassen Sie sich die Sitzordnung zufällig erstellen.",
+          title: "Motivation & Übersicht",
+          description: "Ein täglich wechselndes Zitat sorgt für Motivation, während Sie sofort sehen, wie viele Klassen Sie heute betreuen.",
           visualType: "abstract",
-          image: getAssetPath(`${IMG_FOLDER}sitzplan.webp`)
-        },
-        {
-          title: "KI-Gruppeneinteilung",
-          description: "Lassen Sie die KI homogene oder heterogene Gruppen bilden. Sagen Sie einfach: 'Erstelle 5 Gruppen, aber setze Max nicht mit Moritz zusammen'.",
-          visualType: "stat"
-        },
-        {
-          title: "Fairer Zufallsgenerator",
-          description: "Rufen Sie Schüler per Zufall auf, ohne jemanden zu benachteiligen. Der Generator merkt sich, wer schon dran war.",
-          visualType: "check"
+          items: ["Tageszitate", "Klassen-Status", "Quick-Actions"]
         }
       ]
     },
@@ -241,49 +198,175 @@ export const content: ContentStore = {
       slug: "klassen",
       hero: {
         headline: "Ihre Klassen, perfekt organisiert.",
-        subheadline: "Verwalten Sie Schüler, Lerngruppen und Kurse flexibel und blitzschnell.",
-        badge: "Verwaltung"
+        subheadline: "Verwalten Sie Lerngruppen flexibel. Importieren Sie Daten blitzschnell und behalten Sie die Schülerakte im Blick.",
+        badge: "Lerngruppen"
       },
       sections: [
         {
           title: "Die digitale Schülerakte",
-          description: "Jeder Schüler hat eine eigene Akte. Hinterlegen Sie Stammdaten, Kontaktinfos der Eltern und Fotos. Archivieren Sie alte Klassen mit einem Klick.",
-          visualType: "card",
-          image: getAssetPath(`${IMG_FOLDER}schuelerakte.webp`)
+          description: "Stammdaten, Förderbedarf, Nachteilsausgleich und Notizen an einem Ort. Inklusive optionaler Foto-Funktion.",
+          visualType: "list",
+          image: `${EXTERNAL_IMAGE_BASE}klassen.webp`,
+          items: ["Import per Copy & Paste", "NTA-Hinterlegung", "Pädagogische Merkmale"]
         },
         {
-          title: "Förderbedarf & NTA",
-          description: "Behalten Sie den Überblick über Nachteilsausgleiche und pädagogische Merkmale. Linexio erinnert Sie vor Klausuren diskret daran.",
+          title: "Archiv & Struktur",
+          description: "Legen Sie beliebig viele Klassen oder Kurse an. Am Schuljahresende archivieren Sie alte Daten mit einem Klick.",
+          visualType: "check",
+          items: ["Excel/CSV Schnittstelle", "Langzeit-Archiv", "Sicherer Fotoupload"]
+        }
+      ]
+    },
+    "sitzplan": {
+      slug: "sitzplan",
+      hero: {
+        headline: "Ihr Klassenzimmer im Blick.",
+        subheadline: "Ein visueller Editor, der sich Ihrem Raum anpasst. Organisieren Sie Ihre Klasse intuitiv per Drag & Drop.",
+        badge: "Sitzplan"
+      },
+      sections: [
+        {
+          title: "Interaktive Gestaltung",
+          description: "Schieben Sie Schüler einfach mit dem Finger auf ihre Plätze. Definieren Sie das Lehrerpult und fixieren Sie Schüler.",
+          visualType: "abstract",
+          image: `${EXTERNAL_IMAGE_BASE}sitzplan.webp`,
+          items: ["Drag & Drop Bedienung", "Platz-Fixierung (z.B. Brille)", "Vorder- & Rückansicht"]
+        },
+        {
+          title: "Intelligente Zuweisung",
+          description: "Nutzen Sie optionale Logik, um Sitzpläne nach Kriterien zu erstellen, wie z.B. das Trennen von Unruhe-Herden.",
+          visualType: "stat",
+          items: ["Automatisches Mischen", "Raum-Vorlagen", "Positions-Sperren"]
+        }
+      ]
+    },
+    "checklisten": {
+      slug: "checklisten",
+      hero: {
+        headline: "Nie wieder den Überblick verlieren.",
+        subheadline: "Erfassen Sie Hausaufgaben, Elternbriefe oder Kopiergeld. Einfach abhacken und sofort sehen, wer noch fehlt.",
+        badge: "Checklisten"
+      },
+      sections: [
+        {
+          title: "Status-Tracking in Echtzeit",
+          description: "Erfassen Sie nicht nur 'Erledigt', sondern auch 'Fehlt' oder 'Entschuldigt'. So wissen Sie immer genau, was noch offen ist.",
+          visualType: "check",
+          image: `${EXTERNAL_IMAGE_BASE}checklisten.webp`,
+          items: ["Mehrstufige Status-Farben", "Schnelles Abhacken", "Klassenübersicht"]
+        },
+        {
+          title: "Vielfältige Anwendung",
+          description: "Ob Kopiergeld, Elternbriefe oder Materialkontrolle – erstellen Sie individuelle Listen für jeden Zweck.",
           visualType: "list",
-          items: ["Stammdaten Import (CSV/Excel)", "Nachteilsausgleich (NTA)", "Private Notizen & Beobachtungen"]
+          items: ["Einfaches Duplizieren", "Export-Funktion", "Historie"]
+        }
+      ]
+    },
+    "gruppen": {
+      slug: "gruppen",
+      hero: {
+        headline: "Gruppenbildung in Sekunden.",
+        subheadline: "Schluss mit Diskussionen bei der Gruppenwahl. Erstellen Sie faire Gruppen nach Ihren persönlichen Kriterien.",
+        badge: "Gruppeneinteilung"
+      },
+      sections: [
+        {
+          title: "Zufall & Kriterien",
+          description: "Bilden Sie Gruppen nach Anzahl, Größe oder speziellen Kriterien wie Geschlecht oder Leistung.",
+          visualType: "list",
+          image: `${EXTERNAL_IMAGE_BASE}gruppen.webp`,
+          items: ["Zufalls-Modus", "Homogene Gruppen", "Heterogene Mischung"]
+        },
+        {
+          title: "KI-Unterstützung",
+          description: "Lassen Sie komplexe Konstellationen von der KI lösen, um z.B. bestimmte Schüler gezielt zu trennen oder zu paaren.",
+          visualType: "stat",
+          items: ["Ausschluss-Listen", "Partner-Fixierung", "Schnelles Neu-Würfeln"]
+        }
+      ]
+    },
+    "zufall": {
+      slug: "zufall",
+      hero: {
+        headline: "Gerechtigkeit per Zufall.",
+        subheadline: "Der faire Aufruf-Generator für mündliche Abfragen und Beiträge. Spannung inklusive.",
+        badge: "Zufallsauswahl"
+      },
+      sections: [
+        {
+          title: "Das Fairness-Prinzip",
+          description: "Linexio merkt sich, wer schon dran war, bis alle einmal aufgerufen wurden. So fühlt sich kein Schüler benachteiligt.",
+          visualType: "stat",
+          image: `${EXTERNAL_IMAGE_BASE}zufall.webp`,
+          items: ["Gedächtnis-Funktion", "Spotlight Animation", "Einfache Bedienung"]
         }
       ]
     },
     "namen": {
       slug: "namen",
       hero: {
-        headline: "Nie wieder Namen vergessen.",
-        subheadline: "Starten Sie perfekt in das neue Schuljahr und lernen Sie Ihre neuen Klassen im Rekordtempo.",
-        badge: "Training"
+        headline: "Namen lernen leicht gemacht.",
+        subheadline: "Ein spielerischer Modus, um zu Schuljahresbeginn die Namen Ihrer SchülerInnen blitzschnell zu lernen.",
+        badge: "Namenstraining"
       },
       sections: [
         {
-          title: "Spielerischer Quiz-Modus",
-          description: "Sehen Sie ein Foto und erraten Sie den Namen – oder umgekehrt. Das direkte Feedback hilft Ihnen dabei. Fordern Sie sich selbst heraus in vier unterschiedlichen Varianten!",
-          visualType: "stat",
-          image: getAssetPath(`${IMG_FOLDER}namen.webp`)
+          title: "Quiz & Karteikarten",
+          description: "Wählen Sie zwischen einem interaktiven Quiz oder klassischen digitalen Karteikarten zum Wischen.",
+          visualType: "abstract",
+          image: `${EXTERNAL_IMAGE_BASE}namen.webp`,
+          items: ["Foto-Unterstützung", "Gamification Ansatz", "Lernfortschritt"]
+        }
+      ]
+    },
+    "persoenlich": {
+      slug: "persoenlich",
+      hero: {
+        headline: "Ihr persönlicher Planer.",
+        subheadline: "Notizen, Termine und Organisation an einem Ort. Damit Sie den Kopf für das Wesentliche frei haben.",
+        badge: "Persönlicher Bereich"
+      },
+      sections: [
+        {
+          title: "Termin-Verknüpfung",
+          description: "Verwalten Sie Klausuren, Konferenzen oder Elterngespräche. Linexio warnt Sie automatisch bei NTA-Überschneidungen.",
+          visualType: "check",
+          items: ["Automatischer NTA-Warner", "Kalender-Integration", "Ferien-Import"]
         },
         {
-          title: "Karteikarten-System",
-          description: "Wischen Sie durch digitale Karteikarten Ihrer Schüler. Ideal für die 5 Minuten vor Unterrichtsbeginn oder in Freistunden.",
-          visualType: "card",
-          image: getAssetPath(`${IMG_FOLDER}namen2.webp`)
+          title: "Dienstliches Notizbuch",
+          description: "Erstellen Sie Kategorien für Dienstbesprechungen, Ideen oder Protokolle. Alles durchsuchbar und lokal gesichert.",
+          visualType: "list",
+          items: ["Kategorisierte Notizen", "Schnellsuche", "Kein Cloud-Zwang"]
+        }
+      ]
+    },
+    "einstellungen": {
+      slug: "einstellungen",
+      hero: {
+        headline: "Linexio nach Maß.",
+        subheadline: "Passen Sie die App an Ihre Arbeitsweise an. Von Themes bis zu Notenschlüsseln.",
+        badge: "Einstellungen"
+      },
+      sections: [
+        {
+          title: "Design & Themes",
+          description: "Wählen Sie aus verschiedenen modernen Themes wie 'Aurora', 'Solaris' oder 'Amethyst'.",
+          visualType: "check",
+          items: ["Farb-Varianten", "Dark & Light Mode", "Individuelle Akzentfarben"]
+        },
+        {
+          title: "Datenverwaltung",
+          description: "Hier haben Sie die volle Kontrolle über Ihre Backups und die Sicherheits-Einstellungen.",
+          visualType: "check",
+          items: ["Verschlüsselte Backups", "Sicherheits-Checkup", "Versions-Historie"]
         }
       ]
     }
   },
   pricing: {
-    headline: "Linexio ist kostenlos nutzbar. Kein Abo, keine versteckten Kosten.",
-    description: "Sämtliche Funktionen sind kostenfrei und uneingeschränkt nutzbar. Gefällt Ihnen die App, würden wir uns über eine Unterstützung freuen."
+    headline: "Fairness & Transparenz",
+    description: "Linexio ist ein privates Herzensprojekt in der Testphase. Mein Ziel ist es, den besten Assistenten für Ihren Schulalltag zu bauen – ehrlich, direkt und ohne Abofalle."
   }
 };

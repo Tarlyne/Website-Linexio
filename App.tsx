@@ -1,10 +1,15 @@
+
 import React, { useEffect } from 'react';
 import { Navbar } from './components/Layout/Navbar';
 import { Hero } from './components/Sections/Hero';
+import { TransparencyBanner } from './components/Sections/TransparencyBanner';
 import { BentoGrid } from './components/Sections/BentoGrid';
+import { Pricing } from './components/Sections/Pricing';
 import { InstallationGuide } from './components/Sections/InstallationGuide';
 import { Footer } from './components/Sections/Footer';
 import { FeatureDetail } from './components/Sections/FeatureDetail';
+import { Impressum } from './components/Legal/Impressum';
+import { PrivacyPolicy } from './components/Legal/PrivacyPolicy';
 import { BrowserRouter as Router, Routes, Route, useLocation } from './lib/router';
 import { AnimatePresence } from 'framer-motion';
 import { PageTransition } from './components/Layout/PageTransition';
@@ -18,8 +23,7 @@ import { smoothScrollTo } from './lib/scroll';
  * 
  * 2. Cross-Page Scrolling Strategy:
  *    - The 'Home' component now proactively checks for a 'pendingScrollTarget'
- *      set by the Navbar during cross-page navigation. This ensures 100%
- *      reliability compared to brittle timeouts.
+ *      set by the Navbar during cross-page navigation.
  */
 
 const Home: React.FC = () => {
@@ -27,10 +31,9 @@ const Home: React.FC = () => {
     // Prüfen, ob die Navbar einen Scroll-Wunsch hinterlassen hat
     if (window.__pendingScrollTarget) {
       const target = window.__pendingScrollTarget;
-      // Kurze Verzögerung, damit die Eingangs-Animation der Seite das Layout nicht mehr verschiebt
       const timer = setTimeout(() => {
         smoothScrollTo(target);
-        window.__pendingScrollTarget = undefined; // Marker löschen
+        window.__pendingScrollTarget = undefined; 
       }, 100);
       return () => clearTimeout(timer);
     }
@@ -40,7 +43,9 @@ const Home: React.FC = () => {
     <PageTransition>
       <main>
         <Hero />
+        <TransparencyBanner />
         <BentoGrid />
+        <Pricing />
         <InstallationGuide />
       </main>
     </PageTransition>
@@ -67,6 +72,8 @@ const AppContent: React.FC = () => {
         <Routes location={location.pathname} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/feature/:slug" element={<FeatureDetail />} />
+          <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<PrivacyPolicy />} />
         </Routes>
       </AnimatePresence>
       
