@@ -73,6 +73,7 @@ export const Navbar: React.FC = () => {
             <a href="#features" onClick={(e) => handleNavClick(e, 'features')} className="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors cursor-pointer">Features</a>
             <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors cursor-pointer">Das Projekt</a>
             <a href="#how-it-works" onClick={(e) => handleNavClick(e, 'how-it-works')} className="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors cursor-pointer">So geht's</a>
+            <Link to="/faq" className="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors">FAQ</Link>
             <Link to="/feature/security" className="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors">Datensicherheit</Link>
           </div>
 
@@ -96,6 +97,7 @@ export const Navbar: React.FC = () => {
           <a href="#features" onClick={(e) => handleNavClick(e, 'features')} className="text-slate-300 hover:text-brand-500 py-2">Features</a>
           <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className="text-slate-300 hover:text-brand-500 py-2">Das Projekt</a>
           <a href="#how-it-works" onClick={(e) => handleNavClick(e, 'how-it-works')} className="text-slate-300 hover:text-brand-500 py-2">So geht's</a>
+          <Link to="/faq" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 hover:text-brand-500 py-2">FAQ</Link>
           <Link to="/feature/security" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 hover:text-brand-500 py-2">Datensicherheit</Link>
           <div className="h-px bg-slate-800 my-1" />
           <Button fullWidth variant="primary" icon={Download} onClick={handleAppClick}>Zur App</Button>

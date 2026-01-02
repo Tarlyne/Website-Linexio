@@ -11,6 +11,7 @@ import { FeatureDetail } from './components/Sections/FeatureDetail';
 import { Impressum } from './components/Legal/Impressum';
 import { PrivacyPolicy } from './components/Legal/PrivacyPolicy';
 import { FAQ } from './components/Legal/FAQ';
+import { ScrollToTop } from './components/ui/ScrollToTop';
 import { BrowserRouter as Router, Routes, Route, useLocation } from './lib/router';
 import { AnimatePresence } from 'framer-motion';
 import { PageTransition } from './components/Layout/PageTransition';
@@ -25,7 +26,10 @@ import { smoothScrollTo } from './lib/scroll';
  *    - Scroll-to-top responsibility is now moved into 'PageTransition' to 
  *      ensure it only happens when the new page component mounts.
  * 
- * 2. Cross-Page Anchoring:
+ * 2. Global UI Utilities:
+ *    - Added the floating ScrollToTop button for improved navigation efficiency on long pages.
+ * 
+ * 3. Cross-Page Anchoring:
  *    - Still uses window.__pendingScrollTarget to allow the Navbar to link to 
  *      anchors on the Home page from any subpage.
  */
@@ -82,6 +86,7 @@ const AppContent: React.FC = () => {
       </AnimatePresence>
       
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
