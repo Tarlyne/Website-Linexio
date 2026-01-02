@@ -1,4 +1,3 @@
-
 import { 
   LayoutDashboard, 
   Users, 
@@ -195,6 +194,36 @@ export const content: ContentStore = {
       ]
     }
   ],
+  comparison: {
+    headline: "Autonomie statt Cloud-Zwang.",
+    subheadline: "Warum lokale Datenspeicherung für professionelle Lehrkräfte oft die bessere Wahl ist.",
+    items: [
+      {
+        label: "Architektur",
+        cloud: "Zentralisierte Cloud-Systeme",
+        offline: "Zero-Knowledge / Lokal-First",
+        isPositive: true
+      },
+      {
+        label: "Verfügbarkeit",
+        cloud: "Zwingende Internetverbindung",
+        offline: "Uneingeschränkt (Flugmodus-ready)",
+        isPositive: true
+      },
+      {
+        label: "Verarbeitungsort",
+        cloud: "Geteilte Server-Ressourcen",
+        offline: "Dedizierte iPad-Performance",
+        isPositive: true
+      },
+      {
+        label: "Datenhoheit",
+        cloud: "Abhängigkeit von Drittanbietern",
+        offline: "Physikalisch in Ihrer Hand",
+        isPositive: true
+      }
+    ]
+  },
   pages: {
     "security": {
       slug: "security",

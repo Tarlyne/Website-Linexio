@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '../ui/Button';
 import { 
@@ -11,16 +10,14 @@ import {
   CloudOff,
   UserCheck,
   Save,
-  RefreshCw
+  RefreshCw,
+  ChevronDown
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { content } from '../../lib/content';
 import { smoothScrollTo } from '../../lib/scroll';
 import { Logo } from '../../lib/assets';
 
-/**
- * Mapping für Badges zu Icons
- */
 const badgeIconMap: Record<string, React.ComponentType<any>> = {
   "Optimiert für Tablets": Tablet,
   "100% Offline": WifiOff,
@@ -33,7 +30,6 @@ const badgeIconMap: Record<string, React.ComponentType<any>> = {
 };
 
 export const Hero: React.FC = () => {
-
   const scrollToFeatures = () => {
     smoothScrollTo('features');
   };
@@ -43,12 +39,10 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
-      {/* Content Container */}
+    <section className="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden min-h-[90vh] flex flex-col justify-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           
-          {/* Left Column: Content */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -94,38 +88,27 @@ export const Hero: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Dynamic Brand Visualization */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative flex items-center justify-center p-4 lg:p-0"
           >
-             {/* Floating Glass Logo Container - Resized to 320px */}
              <motion.div
                animate={{ y: [0, -12, 0] }}
-               transition={{ 
-                 duration: 6, 
-                 repeat: Infinity, 
-                 ease: "easeInOut" 
-               }}
+               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                className="relative z-20 w-full max-w-[320px] aspect-square rounded-[3rem] bg-dark-950/40 backdrop-blur-2xl border border-white/10 flex items-center justify-center shadow-2xl overflow-hidden group"
              >
-                {/* Ambient Edge Glow - Rotating behind the logo */}
                 <motion.div 
                   animate={{ rotate: 360 }}
                   transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
                   className="absolute w-[150%] h-[150%] bg-[conic-gradient(from_0deg,transparent_0%,rgba(34,211,238,0.15)_25%,transparent_50%,rgba(34,211,238,0.15)_75%,transparent_100%)] opacity-60 pointer-events-none"
                 />
-
-                {/* Breathing Inner Glow */}
                 <motion.div 
                   animate={{ opacity: [0.1, 0.3, 0.1] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute inset-0 bg-brand-500/10 blur-3xl pointer-events-none"
                 />
-                
-                {/* The Logo with subtle breathing scale */}
                 <div className="relative p-14 w-full h-full flex items-center justify-center">
                    <motion.div
                      animate={{ scale: [1, 1.02, 1] }}
@@ -138,15 +121,11 @@ export const Hero: React.FC = () => {
                      />
                    </motion.div>
                 </div>
-
-                {/* Glass reflections */}
                 <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
                 <div className="absolute bottom-0 left-0 right-0 h-1 px-12 bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
              </motion.div>
 
-             {/* Background Atmosphere Layers */}
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] -z-10">
-                {/* Pulsing main glow */}
                 <motion.div 
                    animate={{ 
                      scale: [1, 1.15, 1],
@@ -155,13 +134,29 @@ export const Hero: React.FC = () => {
                    transition={{ duration: 8, repeat: Infinity }}
                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-brand-500/20 blur-[100px] rounded-full"
                 />
-                
-                {/* Secondary accent glow */}
                 <div className="absolute top-1/4 right-1/4 w-[40%] h-[40%] bg-cyan-400/10 blur-[120px] rounded-full" />
              </div>
           </motion.div>
         </div>
       </div>
+
+      {/* Animated Scroll Hint */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 cursor-pointer group z-20"
+        onClick={scrollToFeatures}
+      >
+        <span className="text-[10px] uppercase tracking-[0.3em] text-slate-500 group-hover:text-brand-400 transition-colors font-bold">Entdecken</span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="p-1 rounded-full border border-slate-800 text-slate-500 group-hover:text-brand-400 group-hover:border-brand-500/30 transition-colors"
+        >
+          <ChevronDown className="w-5 h-5" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

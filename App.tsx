@@ -1,8 +1,8 @@
-
 import React, { useEffect } from 'react';
 import { Navbar } from './components/Layout/Navbar';
 import { Hero } from './components/Sections/Hero';
 import { TransparencyBanner } from './components/Sections/TransparencyBanner';
+import { FeatureClash } from './components/Sections/FeatureClash';
 import { BentoGrid } from './components/Sections/BentoGrid';
 import { Pricing } from './components/Sections/Pricing';
 import { InstallationGuide } from './components/Sections/InstallationGuide';
@@ -52,6 +52,7 @@ const Home: React.FC = () => {
       <main>
         <Hero />
         <TransparencyBanner />
+        <FeatureClash />
         <BentoGrid />
         <Pricing />
         <InstallationGuide />

@@ -1,4 +1,3 @@
-
 import { LucideIcon } from 'lucide-react';
 import React from 'react';
 
@@ -46,6 +45,13 @@ export interface FAQCategory {
   questions: FAQItem[];
 }
 
+export interface ComparisonItem {
+  label: string;
+  cloud: string;
+  offline: string;
+  isPositive: boolean;
+}
+
 export interface ContentStore {
   brand: {
     name: string;
@@ -65,5 +71,10 @@ export interface ContentStore {
   pricing: {
     headline: string;
     description: string;
+  };
+  comparison: {
+    headline: string;
+    subheadline: string;
+    items: ComparisonItem[];
   };
 }
