@@ -9,14 +9,13 @@ import {
   GraduationCap, 
   LayoutGrid, 
   Dices, 
-  Settings 
+  Settings,
+  Info,
+  ShieldCheck,
+  Wrench
 } from 'lucide-react';
 import { FeatureItem, FeaturePageData, ContentStore } from '../types';
 
-/**
- * Basis-URL für externe Assets (Bilder).
- * Die Bilder liegen im offiziellen Linexio-Assets Repository.
- */
 const EXTERNAL_IMAGE_BASE = "https://raw.githubusercontent.com/tarlyne/linexio-assets/main/";
 
 export const content: ContentStore = {
@@ -111,6 +110,89 @@ export const content: ContentStore = {
       icon: Settings,
       colSpan: 1,
       slug: "einstellungen"
+    }
+  ],
+  faq: [
+    {
+      title: "Allgemein",
+      id: "general",
+      icon: Info,
+      questions: [
+        {
+          question: "Ist Linexio wirklich dauerhaft kostenlos?",
+          answer: "Ja. Alle Funktionen sind kostenlos und werbefrei. Es gibt keinerlei Einschränkungen bezüglich Nutzungszeit oder Umfang. Wenn Sie das Projekt unterstützen möchten, können Sie dies durch eine freiwillige Spende direkt in der App tun."
+        },
+        {
+          question: "Was hat es mit der Spende auf sich?",
+          answer: "Wenn Ihnen die App gefällt, dann können Sie eine freiwillige Spende in beliebiger Höhe tätigen - wir würden uns sehr darüber freuen! Als kleines Dankeschön bekommen Sie ein zusätzliches Theme, eine persönliche Anrede auf dem Dashboard und die Nutzung der optionalen KI-Funktionen wird Ihnen freigeschaltet."
+        },
+        {
+          question: "Muss ich ein Benutzerkonto erstellen?",
+          answer: "Nein. Da Linexio ohne Server auskommt, gibt es auch kein direktes Benutzerkonto. Sie installieren die App, legen Ihr Passwort fest und können sofort mit der Arbeit beginnen. Ihre Daten bleiben anonym und lokal."
+        },
+        {
+          question: "Ich habe mein Passwort vergessen - können Sie es zurücksetzen?",
+          answer: "Nein. Ihre Daten liegen nicht auf einem Server und deshalb habe ich keinen Zugriff darauf. Es gibt aber eine Absicherung innerhalb der App (Erstellung einer Phrase), mit der Sie selbst das Passwort zurücksetzen können - vorausgesetzt, Sie haben die Phrase erstellt und sich gut hinterlegt."
+        },
+        {
+          question: "Gibt es Linexio auch für Windows oder Mac?",
+          answer: "Ja. Linexio ist als Progressive Web App (PWA) konzipiert. Sie können sie über moderne Browser auch auf Android-Tablets oder Computern installieren."
+        },
+        {
+          question: "Kann ich Linexio auf mehreren Geräten nutzen und synchronisieren sich meine Daten?",
+          answer: "Sie können Linexio auf mehreren Geräten installieren, ja. Aber es findet keine Synchronisierung der Daten statt, da die Daten nur auf Ihrem jeweiligen Gerät liegen und keine Server genutzt werden. Sie können sich Backups erstellen und diese dann auf einem anderen System laden. Aber dies birgt das Risiko, dass sie immer aufpassen müssen, wo sie welche Daten geändert haben."
+        },
+        {
+          question: "Warum nutzt Linexio keine Server?",
+          answer: "Der Fokus liegt derzeit darin, die App zu verbessern, damit Sie Ihnen bestmöglichst im Schulalltag helfen kann. Zum aktuellen Zeitpunkt ist also eine Umstellung auf Server noch nicht vorgesehen."
+        }
+      ]
+    },
+    {
+      title: "Datenschutz & Sicherheit",
+      id: "privacy",
+      icon: ShieldCheck,
+      questions: [
+        {
+          question: "Wie sicher sind meine Schülerdaten?",
+          answer: "Maximal sicher. Linexio verfolgt einen 'Offline-First'-Ansatz. Alle Daten werden mit moderner Verschlüsselungstechnik und separatem Passwort ausschließlich im Speicher Ihres Endgeräts abgelegt. Es findet keine Synchronisation mit einer Cloud statt, es sei denn, Sie erstellen manuell ein Backup und laden dieses selbst hoch."
+        },
+        {
+          question: "Brauche ich einen Auftragsverarbeitungsvertrag (AVV)?",
+          answer: "Da ich keinen Zugriff auf Ihre Daten habe und diese nicht auf Servern verarbeitet werden, ist nach gängiger Rechtsauffassung kein AVV erforderlich. Die datenschutzrechtliche Verantwortung verbleibt vollständig bei Ihnen als Lehrkraft."
+        },
+        {
+          question: "Was passiert, wenn mein iPad kaputt geht?",
+          answer: "Da die Daten nur lokal auf Ihrem Gerät liegen, wären sie bei einem Totalverlust des Geräts ohne Backup verloren. Es wird daher dringend empfohlen, regelmäßig die integrierte Backup-Funktion zu nutzen und die verschlüsselte Datei an einem sicheren Ort zu speichern."
+        }
+      ]
+    },
+    {
+      title: "Funktionen",
+      id: "features",
+      icon: Wrench,
+      questions: [
+        {
+          question: "Kann ich Daten aus Excel importieren?",
+          answer: "Ja. Linexio bietet eine intelligente Import-Funktion. Sie können Schülerlisten einfach in Excel als CSV-Datei exportieren oder direkt per Copy & Paste in Linexio einfügen. Die App erkennt die Struktur meist automatisch."
+        },
+        {
+          question: "Unterstützt Linexio das Oberstufen-Punktesystem?",
+          answer: "Absolut. Diese können Sie beim Erstellen der Lerngruppe einfach als Notensystem wählen."
+        },
+        {
+          question: "Ich brauche ein anderes Notensystem - was mache ich nun?",
+          answer: "Linexio wurde ursprünglich nur für mich selbst entwickelt. Ich benötige nur diese Notensysteme und habe keine Erfahrung mit anderen Systemen. Sie können mir aber sehr gerne schreiben, welches Notensystem Sie brauchen oder sich wünschen und ich gebe mir Mühe, dies schnellstmöglichst zu integrieren. Genau für solche Fragen und Wünsche sind wir in der Testphase! :)"
+        },
+        {
+          question: "Wird es statt Noten auch ein Bewertungssystem mit +/- oder Smileys geben?",
+          answer: "Dies ist nicht vorgesehen. Linexio arbeitet mit Formeln, die Ihnen Noten berechnen. Eine Bewertung mit Sonderzeichen oder Smileys halte ich für kritisch. Am Ende einer Bewertungsphase müssen Sie irgendwann Smileys oder Sonderzeichen übersetzen und ihnen einen Wert geben, um daraus eine Note zu formen. Das halte ich für schwierig und weniger rechtssicher. Vor allem aber interpretationsabhängig."
+        },
+        {
+          question: "Kann ich Noten händisch ändern?",
+          answer: "Ja. Sie können Zeugnisnoten händisch ändern. Linexio berechnet Ihnen die Noten mathematisch genau und sauber - aber manchmal ist eben die berechnete Note pädagogisch nicht die richtige Entscheidung. Alle anderen Noten (wie bspw. Klausurnoten) können nicht geändert werden."
+        }
+      ]
     }
   ],
   pages: {

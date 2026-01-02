@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 interface PageTransitionProps {
@@ -6,7 +7,20 @@ interface PageTransitionProps {
   className?: string;
 }
 
+/**
+ * PageTransition handles the entry/exit animations for routes.
+ * It also manages the scroll-to-top logic to ensure that new pages start at the top
+ * without flickering during the transition phase.
+ */
 export const PageTransition: React.FC<PageTransitionProps> = ({ children, className = "" }) => {
+  
+  useEffect(() => {
+    // Only scroll to top if there's no pending anchor target (from Navbar navigation)
+    if (!window.__pendingScrollTarget) {
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.98, filter: 'blur(10px)' }}

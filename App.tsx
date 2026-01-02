@@ -10,6 +10,7 @@ import { Footer } from './components/Sections/Footer';
 import { FeatureDetail } from './components/Sections/FeatureDetail';
 import { Impressum } from './components/Legal/Impressum';
 import { PrivacyPolicy } from './components/Legal/PrivacyPolicy';
+import { FAQ } from './components/Legal/FAQ';
 import { BrowserRouter as Router, Routes, Route, useLocation } from './lib/router';
 import { AnimatePresence } from 'framer-motion';
 import { PageTransition } from './components/Layout/PageTransition';
@@ -18,12 +19,15 @@ import { smoothScrollTo } from './lib/scroll';
 /**
  * ARCHITECTURE NOTES (Kernanweisung V2 Compliance):
  * 
- * 1. SPA Routing & Transitions:
- *    - Implements 'AnimatePresence' to handle smooth page exits/entries.
+ * 1. Scroll Management Refactoring:
+ *    - The previous 'ScrollToTop' component was removed because it triggered 
+ *      the scroll jump during the exit animation of the outgoing page.
+ *    - Scroll-to-top responsibility is now moved into 'PageTransition' to 
+ *      ensure it only happens when the new page component mounts.
  * 
- * 2. Cross-Page Scrolling Strategy:
- *    - The 'Home' component now proactively checks for a 'pendingScrollTarget'
- *      set by the Navbar during cross-page navigation.
+ * 2. Cross-Page Anchoring:
+ *    - Still uses window.__pendingScrollTarget to allow the Navbar to link to 
+ *      anchors on the Home page from any subpage.
  */
 
 const Home: React.FC = () => {
@@ -58,7 +62,6 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="min-h-screen selection:bg-brand-500/30 selection:text-white relative">
-      
       {/* GLOBAL BACKGROUND CANVAS */}
       <div className="fixed inset-0 overflow-hidden -z-10 pointer-events-none">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-[800px] bg-brand-900/20 blur-[120px] rounded-full opacity-40" />
@@ -72,6 +75,7 @@ const AppContent: React.FC = () => {
         <Routes location={location.pathname} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/feature/:slug" element={<FeatureDetail />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<PrivacyPolicy />} />
         </Routes>

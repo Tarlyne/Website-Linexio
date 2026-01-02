@@ -32,36 +32,40 @@ export const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="text-white font-semibold mb-4">Produkt</h4>
+            <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-widest">Produkt</h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
                 <a 
                   href="#features" 
                   onClick={(e) => handleNavClick(e, 'features')}
                   className="hover:text-brand-400 transition-colors cursor-pointer"
+                  aria-label="Zu den App-Features scrollen"
                 >
                   Features
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-brand-400 transition-colors">FAQ</a>
+                <Link to="/faq" className="hover:text-brand-400 transition-colors" aria-label="Häufig gestellte Fragen ansehen">FAQ</Link>
+              </li>
+              <li>
+                <Link to="/feature/security" className="hover:text-brand-400 transition-colors" aria-label="Informationen zur Datensicherheit">Datensicherheit</Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Rechtliches</h4>
+            <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-widest">Rechtliches</h4>
             <ul className="space-y-2 text-sm text-slate-400">
-              <li><Link to="/impressum" className="hover:text-brand-400 transition-colors">Impressum</Link></li>
-              <li><Link to="/datenschutz" className="hover:text-brand-400 transition-colors">Datenschutz</Link></li>
+              <li><Link to="/impressum" className="hover:text-brand-400 transition-colors" aria-label="Impressum ansehen">Impressum</Link></li>
+              <li><Link to="/datenschutz" className="hover:text-brand-400 transition-colors" aria-label="Datenschutzerklärung ansehen">Datenschutz</Link></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="text-white font-semibold mb-4">Kontakt</h4>
+            <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-widest">Kontakt</h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
-                <a href="mailto:linexio@gmx.de" className="hover:text-brand-400 transition-colors">
+                <a href="mailto:linexio@gmx.de" className="hover:text-brand-400 transition-colors" aria-label="Support per E-Mail kontaktieren">
                   Hilfe & Kontakt
                 </a>
               </li>
@@ -71,7 +75,7 @@ export const Footer: React.FC = () => {
         
         <div className="border-t border-slate-800/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-600 text-sm">
-            © {new Date().getFullYear()} {content.brand.name}. Made for Teachers.
+            © {new Date().getFullYear()} {content.brand.name}. Made with ❤️ for Teachers.
           </p>
         </div>
       </div>

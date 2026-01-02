@@ -34,12 +34,16 @@ export interface FeaturePageData {
   sections: FeatureSection[];
 }
 
-export interface PricingTier {
-  name: string;
-  price: string;
-  features: string[];
-  cta: string;
-  recommended?: boolean;
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export interface FAQCategory {
+  title: string;
+  id: string;
+  icon: React.ComponentType<any>; // New: Visual guidance for the category
+  questions: FAQItem[];
 }
 
 export interface ContentStore {
@@ -57,6 +61,7 @@ export interface ContentStore {
   };
   features: FeatureItem[];
   pages: Record<string, FeaturePageData>;
+  faq: FAQCategory[];
   pricing: {
     headline: string;
     description: string;

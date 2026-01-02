@@ -82,7 +82,27 @@
         min-height: 100vh;
       }
       #root { min-height: 100vh; }
+      
+      /* Accessibility Focus Rings */
+      *:focus-visible {
+        outline: 2px solid #06b6d4;
+        outline-offset: 4px;
+      }
     </style>
+    
+    <!-- Dynamic Favicon Generation -->
+    <script>
+      (function() {
+        const svg = `<svg viewBox="50 30 65 75" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="#0891b2" stroke-width="6" d="m 54.97 35.24 0.12 64.38 54.84 0.25 L 94.92 85.12 H 69.85 l 0.12 -35.12 z"/><path stroke="white" stroke-width="5" d="m 66.49 34.67 0.10 53.60 43.67 0.21 -11.95 -12.28 H 78.34 l 0.10 -29.23 z"/></g></svg>`;
+        const blob = new Blob([svg], { type: 'image/svg+xml' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('link');
+        link.rel = 'icon';
+        link.type = 'image/svg+xml';
+        link.href = url;
+        document.head.appendChild(link);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
