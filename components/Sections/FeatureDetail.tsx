@@ -313,9 +313,12 @@ export const FeatureDetail: React.FC = () => {
 
       <div className="mt-20 text-center">
           <h3 className="text-white font-semibold mb-6">Bereit loszulegen?</h3>
-          <Link to="/" className="inline-block bg-brand-600 hover:bg-brand-500 text-white px-8 py-3 rounded-xl font-medium transition-colors glossy-bar shadow-glow">
+          <a 
+            href="https://tarlyne.github.io/Linexio/" 
+            className="inline-block bg-brand-600 hover:bg-brand-500 text-white px-8 py-3 rounded-xl font-medium transition-colors glossy-bar shadow-glow"
+          >
               Jetzt Linexio installieren
-          </Link>
+          </a>
       </div>
     </PageTransition>
   );

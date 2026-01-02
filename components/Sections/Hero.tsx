@@ -38,6 +38,10 @@ export const Hero: React.FC = () => {
     smoothScrollTo('features');
   };
 
+  const handleAppClick = () => {
+    window.location.href = 'https://tarlyne.github.io/Linexio/';
+  };
+
   return (
     <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
       {/* Content Container */}
@@ -69,7 +73,7 @@ export const Hero: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-4">
-              <Button size="lg" icon={Download}>
+              <Button size="lg" icon={Download} onClick={handleAppClick}>
                 {content.hero.ctaPrimary}
               </Button>
               <Button variant="outline" size="lg" icon={ArrowRight} onClick={scrollToFeatures}>

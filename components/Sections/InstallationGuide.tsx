@@ -6,6 +6,10 @@ import { Logo } from '../../lib/assets';
 import { Button } from '../ui/Button';
 
 export const InstallationGuide: React.FC = () => {
+  const handleAppClick = () => {
+    window.location.href = 'https://tarlyne.github.io/Linexio/';
+  };
+
   return (
     // Removed 'bg-dark-900' and 'border-y'. Added relative positioning and spotlight.
     // Added ID 'how-it-works' for navbar navigation
@@ -71,6 +75,7 @@ export const InstallationGuide: React.FC = () => {
                    size="lg" 
                    icon={Download}
                    className="shadow-xl"
+                   onClick={handleAppClick}
                  >
                    Jetzt installieren
                  </Button>

@@ -36,7 +36,7 @@ export const Navbar: React.FC = () => {
   };
 
   const handleAppClick = () => {
-    console.log("Navigating to App...");
+    window.location.href = 'https://tarlyne.github.io/Linexio/';
   };
 
   return (
