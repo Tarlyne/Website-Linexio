@@ -34,12 +34,16 @@ export const Hero: React.FC = () => {
     smoothScrollTo('features');
   };
 
+  const scrollToIntro = () => {
+    smoothScrollTo('intro');
+  };
+
   const handleAppClick = () => {
     window.location.href = 'https://tarlyne.github.io/Linexio/';
   };
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden min-h-[90vh] flex flex-col justify-center">
+    <section className="relative pt-24 pb-8 md:pt-36 md:pb-16 overflow-hidden min-h-[85vh] flex flex-col justify-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           
@@ -66,7 +70,7 @@ export const Hero: React.FC = () => {
               {content.hero.subheadline} <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 via-cyan-100 to-brand-300 font-bold">kostenlos.</span>
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-2">
               <Button size="lg" icon={Download} onClick={handleAppClick}>
                 {content.hero.ctaPrimary}
               </Button>
@@ -75,7 +79,7 @@ export const Hero: React.FC = () => {
               </Button>
             </div>
 
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3 gap-y-3 text-sm text-slate-400 pt-8">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 gap-y-3 text-sm text-slate-400 pt-6">
               {content.hero.badges.map((badgeText, idx) => {
                 const Icon = badgeIconMap[badgeText] || ShieldCheck;
                 return (
@@ -145,8 +149,8 @@ export const Hero: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 cursor-pointer group z-20"
-        onClick={scrollToFeatures}
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 cursor-pointer group z-20"
+        onClick={scrollToIntro}
       >
         <span className="text-[10px] uppercase tracking-[0.3em] text-slate-500 group-hover:text-brand-400 transition-colors font-bold">Entdecken</span>
         <motion.div

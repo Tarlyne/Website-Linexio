@@ -25,7 +25,7 @@ export const TransparencyBanner: React.FC = () => {
   ];
 
   return (
-    <section className="relative py-12 px-4 sm:px-6 lg:px-8">
+    <section id="intro" className="relative py-12 px-4 sm:px-6 lg:px-8">
       {/* Subtile Glow-Effekte im Hintergrund */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full bg-brand-500/5 blur-[80px] -z-10" />
       
