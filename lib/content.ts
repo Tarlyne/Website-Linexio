@@ -146,7 +146,7 @@ export const content: ContentStore = {
       slug: "noten",
       hero: {
         headline: "Fair, transparent und präzise.",
-        subheadline: "Von der mündlichen Note bis zum Zeugnis. Linexio nimmt Ihnen das Rechnen ab und sorgt für Rechtssicherheit durch transparente Gewichtung.",
+        subheadline: "Von der mündlichen Note bis zum Zeugnis. Linexio nimmt Ihnen das Rechnen ab und sorgt für Transparenz und Übersichtlichkeit.",
         badge: "Notenverwaltung"
       },
       sections: [
@@ -184,13 +184,13 @@ export const content: ContentStore = {
           description: "Vom Geburtstags-Radar über den Ferien-Countdown bis hin zu offenen Aufgaben – das Dashboard denkt mit.",
           visualType: "stat",
           image: `${EXTERNAL_IMAGE_BASE}dashboard.webp`,
-          items: ["Geburtstags-Radar (7 Tage)", "Ferien-Countdown", "Backup-Erinnerung"]
+          items: ["Geburtstags-Radar (7 Tage)", "Ferien-Countdown", "Datierte Checklisten", "Backup-Erinnerung"]
         },
         {
           title: "Motivation & Übersicht",
-          description: "Ein täglich wechselndes Zitat sorgt für Motivation, während Sie sofort sehen, wie viele Klassen Sie heute betreuen.",
+          description: "Ein täglich wechselndes Zitat sorgt für Motivation oder regt zum Nachdenken an. Termine der nächsten 14 Tage werden Ihnen ebenfalls angezeigt.",
           visualType: "abstract",
-          items: ["Tageszitate", "Klassen-Status", "Quick-Actions"]
+          items: ["Tageszitate", "Terminübersicht", "Kalenderwoche"]
         }
       ]
     },
@@ -206,14 +206,15 @@ export const content: ContentStore = {
           title: "Die digitale Schülerakte",
           description: "Stammdaten, Förderbedarf, Nachteilsausgleich und Notizen an einem Ort. Inklusive optionaler Foto-Funktion.",
           visualType: "list",
-          image: `${EXTERNAL_IMAGE_BASE}klassen.webp`,
-          items: ["Import per Copy & Paste", "NTA-Hinterlegung", "Pädagogische Merkmale"]
+          image: `${EXTERNAL_IMAGE_BASE}akte.webp`,
+          items: ["Import per Copy & Paste", "NTA-Hinterlegung", "Pädagogische Merkmale", "Fotofunktion"]
         },
         {
           title: "Archiv & Struktur",
           description: "Legen Sie beliebig viele Klassen oder Kurse an. Am Schuljahresende archivieren Sie alte Daten mit einem Klick.",
           visualType: "check",
-          items: ["Excel/CSV Schnittstelle", "Langzeit-Archiv", "Sicherer Fotoupload"]
+          image: `${EXTERNAL_IMAGE_BASE}lerngruppen.webp`,
+          items: ["Excel/CSV Schnittstelle", "Langzeit-Archiv", "Geschlechterverteilung"]
         }
       ]
     },
@@ -227,16 +228,17 @@ export const content: ContentStore = {
       sections: [
         {
           title: "Interaktive Gestaltung",
-          description: "Schieben Sie Schüler einfach mit dem Finger auf ihre Plätze. Definieren Sie das Lehrerpult und fixieren Sie Schüler.",
+          description: "Definieren Sie die Sitzplatzverteilung und schieben Sie Ihre SchülerInnen einfach mit dem Finger auf ihre Plätze. Sie können SchülerInnen an einen Platz fixieren (bspw. wegen einer Sehschwäche in der ersten Reihe), so dass diese(r) nicht aus Versehen hinten sitzt.",
           visualType: "abstract",
-          image: `${EXTERNAL_IMAGE_BASE}sitzplan.webp`,
-          items: ["Drag & Drop Bedienung", "Platz-Fixierung (z.B. Brille)", "Vorder- & Rückansicht"]
+          image: `${EXTERNAL_IMAGE_BASE}sitzplan1.webp`,
+          items: ["Drag & Drop Bedienung", "Platz-Fixierung"]
         },
         {
           title: "Intelligente Zuweisung",
-          description: "Nutzen Sie optionale Logik, um Sitzpläne nach Kriterien zu erstellen, wie z.B. das Trennen von Unruhe-Herden.",
+          description: "Lassen Sie sich von Linexio helfen. Ob Zufallsverteilung, geschlechterwechselnd, oder aber von der KI nach Ihren Vorgaben.",
           visualType: "stat",
-          items: ["Automatisches Mischen", "Raum-Vorlagen", "Positions-Sperren"]
+          image: `${EXTERNAL_IMAGE_BASE}sitzplan.webp`,
+          items: ["Automatisches Mischen", "Zufall", "Geschlechter im Wechsel", "Intelligente Verteilung nach Vorgaben"]
         }
       ]
     },
@@ -244,22 +246,23 @@ export const content: ContentStore = {
       slug: "checklisten",
       hero: {
         headline: "Nie wieder den Überblick verlieren.",
-        subheadline: "Erfassen Sie Hausaufgaben, Elternbriefe oder Kopiergeld. Einfach abhacken und sofort sehen, wer noch fehlt.",
+        subheadline: "Erfassen Sie Hausaufgaben, Elternbriefe oder Kopiergeld. Einfach abhaken und sofort sehen, wer noch fehlt.",
         badge: "Checklisten"
       },
       sections: [
         {
           title: "Status-Tracking in Echtzeit",
-          description: "Erfassen Sie nicht nur 'Erledigt', sondern auch 'Fehlt' oder 'Entschuldigt'. So wissen Sie immer genau, was noch offen ist.",
+          description: "Erfassen Sie blitzschnell Ihre Listen. Sie können jeder Liste optional ein Abgabedatum geben - und werden nach Ablauf des Datums auf dem Dashboard erinnert, wie viele Abgaben noch überfällig sind.",
           visualType: "check",
-          image: `${EXTERNAL_IMAGE_BASE}checklisten.webp`,
-          items: ["Mehrstufige Status-Farben", "Schnelles Abhacken", "Klassenübersicht"]
+          image: `${EXTERNAL_IMAGE_BASE}checklisteDatum.webp`,
+          items: ["Voreinstellung", "Schnelles Abhaken", "Datums-Funktion"]
         },
         {
           title: "Vielfältige Anwendung",
           description: "Ob Kopiergeld, Elternbriefe oder Materialkontrolle – erstellen Sie individuelle Listen für jeden Zweck.",
           visualType: "list",
-          items: ["Einfaches Duplizieren", "Export-Funktion", "Historie"]
+          image: `${EXTERNAL_IMAGE_BASE}checklisten.webp`,
+          items: ["schnelle Kontrolle", "Alles im Blick"]
         }
       ]
     },
@@ -273,16 +276,24 @@ export const content: ContentStore = {
       sections: [
         {
           title: "Zufall & Kriterien",
-          description: "Bilden Sie Gruppen nach Anzahl, Größe oder speziellen Kriterien wie Geschlecht oder Leistung.",
+          description: "Bilden Sie Gruppen nach Anzahl, Größe oder speziellen Kriterien. Ziehen Sie Ihre SchülerInnen einfach per Drag & Drop in Gruppen.",
           visualType: "list",
           image: `${EXTERNAL_IMAGE_BASE}gruppen.webp`,
-          items: ["Zufalls-Modus", "Homogene Gruppen", "Heterogene Mischung"]
+          items: ["Zufalls-Modus", "Drag & Drop Bedienung", "Homogene Gruppen", "Heterogene Mischung"]
         },
         {
           title: "KI-Unterstützung",
           description: "Lassen Sie komplexe Konstellationen von der KI lösen, um z.B. bestimmte Schüler gezielt zu trennen oder zu paaren.",
           visualType: "stat",
+          image: `${EXTERNAL_IMAGE_BASE}gruppenIntelligent.webp`,
           items: ["Ausschluss-Listen", "Partner-Fixierung", "Schnelles Neu-Würfeln"]
+        },
+        {
+          title: "Benennung & Bewertung der Gruppen",
+          description: "Geben Sie Ihren Gruppen spezielle Namen, um den Überblick zu behalten, welche Gruppe welches Thema bearbeitet. Bewerten Sie Gruppenarbeiten und vergeben Sie allen SchülerInnen einer Gruppe mit nur einem Klick eine Note.",
+          visualType: "stat",
+          image: `${EXTERNAL_IMAGE_BASE}gruppenBewertung.webp`,
+          items: ["Schnelle Bewertung", "Namensvergabe", "Übersicht"]
         }
       ]
     },
@@ -290,15 +301,15 @@ export const content: ContentStore = {
       slug: "zufall",
       hero: {
         headline: "Gerechtigkeit per Zufall.",
-        subheadline: "Der faire Aufruf-Generator für mündliche Abfragen und Beiträge. Spannung inklusive.",
+        subheadline: "Der faire Aufruf-Generator für unterschiedlichste Situationen. Spannung inklusive.",
         badge: "Zufallsauswahl"
       },
       sections: [
         {
           title: "Das Fairness-Prinzip",
-          description: "Linexio merkt sich, wer schon dran war, bis alle einmal aufgerufen wurden. So fühlt sich kein Schüler benachteiligt.",
+          description: "Linexio merkt sich, wer schon dran war, bis alle einmal aufgerufen wurden. So fühlt sich niemand benachteiligt. Abwesende SchülerInnen können zuvor markiert werden, so dass diese nicht berücksichtigt werden.",
           visualType: "stat",
-          image: `${EXTERNAL_IMAGE_BASE}zufall.webp`,
+          image: `${EXTERNAL_IMAGE_BASE}zufall1.webp`,
           items: ["Gedächtnis-Funktion", "Spotlight Animation", "Einfache Bedienung"]
         }
       ]

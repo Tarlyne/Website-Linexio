@@ -25,7 +25,7 @@ export const Pricing: React.FC = () => {
               </h2>
               <div className="space-y-6 text-slate-400 text-lg leading-relaxed">
                 <p>
-                  Linexio ist kein Produkt eines Großkonzerns, sondern mein <strong>privates Herzensprojekt</strong>, das aus meiner täglichen Arbeit im Klassenzimmer entstanden ist. 
+                  Linexio ist kein Produkt eines großen Unternehmens, sondern mein <strong>privates Herzensprojekt</strong>, das aus meiner täglichen Arbeit im Klassenzimmer entstanden ist. 
                 </p>
 
                 <div className="space-y-4 py-4">
@@ -33,7 +33,7 @@ export const Pricing: React.FC = () => {
                     <Target className="w-5 h-5 text-brand-400" /> Warum ich Linexio entwickelt habe
                   </h4>
                   <p className="text-base">
-                    Als Lehrer war ich frustriert von den bestehenden Lösungen: Entweder verlangten sie für jedes kleinste Feature extra Geld, wirkten optisch wie aus den 90ern oder waren so kompliziert aufgebaut, dass sie im hektischen Schulalltag mehr Zeit kosteten als sie sparten. Oft fehlten mir genau die praktischen Funktionen, die ich für meine Unterrichtsorganisation wirklich brauchte.
+                    Ich war frustriert von den bestehenden Lösungen: Entweder verlangten sie für jedes kleinste Feature extra Geld, wirkten optisch veraltet oder waren so kompliziert aufgebaut, dass sie im hektischen Schulalltag mehr Zeit kosteten als sie sparten. Oft fehlten mir genau die praktischen Funktionen, die ich für meine Unterrichtsorganisation wirklich brauchte.
                   </p>
                   <p className="text-base italic border-l-2 border-brand-500/30 pl-4 text-slate-300">
                     "Ich wollte ein System, das modern aussieht, intuitiv funktioniert und sich einfach ehrlich anfühlt – ohne Abofallen oder unübersichtliche Menüs."
@@ -41,7 +41,7 @@ export const Pricing: React.FC = () => {
                 </div>
 
                 <p>
-                  Linexio ist ursprünglich als reines Werkzeug für meinen eigenen Unterricht entstanden und wurde genau auf meine persönlichen Bedürfnisse als Lehrer zugeschnitten. Jetzt habe ich einen Punkt erreicht, an dem ich mit der App so zufrieden bin, dass ich sie gerne mit Ihnen teilen möchte. Ich bin unglaublich gespannt auf Ihre Perspektive und Ihre Wünsche, um Linexio gemeinsam mit Ihnen zu dem Assistenten zu machen, der uns allen im Schulalltag wirklich hilft.
+                  Linexio ist ursprünglich als reines Werkzeug für meinen eigenen Unterricht entstanden und wurde genau auf meine persönlichen Bedürfnisse zugeschnitten. Jetzt habe ich einen Punkt erreicht, an dem ich mit der App so zufrieden bin, dass ich sie gerne mit Ihnen teilen möchte. Ich bin unglaublich gespannt auf Ihre Perspektive und Ihre Wünsche, um Linexio gemeinsam mit Ihnen zu dem Assistenten zu machen, der uns allen im Schulalltag wirklich hilft.
                 </p>
                 
                 <div className="p-5 rounded-2xl bg-dark-800/40 border border-slate-800/60 backdrop-blur-md">
