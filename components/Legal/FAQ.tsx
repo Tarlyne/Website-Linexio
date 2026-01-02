@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronLeft, Search, HelpCircle } from 'lucide-react';
 import { content } from '../../lib/content';
 import { Link } from '../../lib/router';
 import { PageTransition } from '../Layout/PageTransition';
+import { ObfuscatedEmail } from '../ui/ObfuscatedEmail';
 
 /**
  * ARCHITECTURE NOTES (Kernanweisung V2):
@@ -233,12 +233,10 @@ export const FAQ: React.FC = () => {
           <p className="text-slate-400 mb-6 relative z-10 max-w-xl mx-auto text-sm leading-relaxed">
             Schreiben Sie mir gerne einfach eine E-Mail, falls Ihre Frage hier nicht geklärt werden konnte. Ich helfe Ihnen sehr gerne weiter!
           </p>
-          <a 
-            href="mailto:linexio@gmx.de" 
-            className="inline-flex items-center justify-center bg-brand-600 hover:bg-brand-500 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-200 glossy-bar shadow-glow border border-brand-500/20 relative z-10 hover:scale-[1.02]"
-          >
-            Individuelle Hilfe anfordern
-          </a>
+          <ObfuscatedEmail 
+            variant="button" 
+            className="inline-flex items-center justify-center bg-brand-600 hover:bg-brand-500 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-200 glossy-bar shadow-glow border border-brand-500/20 relative z-10 hover:scale-[1.02]" 
+          />
         </div>
       </div>
     </PageTransition>

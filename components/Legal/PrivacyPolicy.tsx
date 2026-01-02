@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from '../../lib/router';
 import { PageTransition } from '../Layout/PageTransition';
 import { ChevronLeft, Shield, Info, UserCheck, Scale, Building2, Lock, Globe, FileText, BarChart3 } from 'lucide-react';
+import { ObfuscatedEmail } from '../ui/ObfuscatedEmail';
 
 export const PrivacyPolicy: React.FC = () => {
   useEffect(() => {
@@ -38,7 +39,11 @@ export const PrivacyPolicy: React.FC = () => {
               <p className="font-bold text-white">Torben Böhm</p>
               <p>Gollacker 14</p>
               <p>35708 Haiger</p>
-              <p className="mt-2 flex items-center gap-2"><Lock className="w-4 h-4 text-slate-500" /> E-Mail: linexio@gmx.de</p>
+              <div className="mt-2 flex items-center gap-2">
+                <Lock className="w-4 h-4 text-slate-500" /> 
+                <span className="text-slate-400 mr-1">E-Mail:</span>
+                <ObfuscatedEmail variant="text" className="text-sm" />
+              </div>
             </div>
           </section>
 

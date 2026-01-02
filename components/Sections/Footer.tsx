@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { content } from '../../lib/content';
 import { useLocation, useNavigate, Link } from '../../lib/router';
 import { smoothScrollTo } from '../../lib/scroll';
+import { ObfuscatedEmail } from '../ui/ObfuscatedEmail';
 
 export const Footer: React.FC = () => {
   const location = useLocation();
@@ -65,9 +65,7 @@ export const Footer: React.FC = () => {
             <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-widest">Kontakt</h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
-                <a href="mailto:linexio@gmx.de" className="hover:text-brand-400 transition-colors" aria-label="Support per E-Mail kontaktieren">
-                  Hilfe & Kontakt
-                </a>
+                <ObfuscatedEmail />
               </li>
             </ul>
           </div>

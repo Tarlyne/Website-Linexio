@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from '../../lib/router';
 import { PageTransition } from '../Layout/PageTransition';
 import { ChevronLeft, Mail, MapPin, User } from 'lucide-react';
+import { ObfuscatedEmail } from '../ui/ObfuscatedEmail';
 
 export const Impressum: React.FC = () => {
   useEffect(() => {
@@ -54,7 +55,7 @@ export const Impressum: React.FC = () => {
             <div className="space-y-4 text-slate-300">
               <div>
                 <p className="text-xs text-slate-500 uppercase font-semibold mb-1">E-Mail</p>
-                <p className="text-lg text-white font-medium">linexio@gmx.de</p>
+                <ObfuscatedEmail variant="text" className="text-lg" />
               </div>
               <p className="text-sm text-slate-400 italic">
                 Hinweis: Dies ist ein privat geführtes Projekt. Kontaktieren Sie uns gerne bei Fragen zur App-Nutzung.
