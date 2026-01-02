@@ -16,6 +16,7 @@ import {
 import { motion } from 'framer-motion';
 import { content } from '../../lib/content';
 import { smoothScrollTo } from '../../lib/scroll';
+import { Logo } from '../../lib/assets';
 
 /**
  * Mapping für Badges zu Icons
@@ -89,66 +90,71 @@ export const Hero: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Visual / Mockup */}
+          {/* Right Column: Dynamic Brand Visualization */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative mx-auto w-full max-w-[500px] lg:max-w-none"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative flex items-center justify-center p-4 lg:p-0"
           >
-             {/* iPad Frame (Aspect Ratio 3:4) */}
-             <div className="relative bg-dark-900 border-8 border-slate-800 rounded-[2rem] shadow-2xl overflow-hidden aspect-[3/4] md:aspect-[4/3] lg:aspect-[3/4] max-h-[700px] mx-auto z-20">
-                {/* Status Bar */}
-                <div className="absolute top-0 w-full h-8 bg-black z-20 flex items-center justify-between px-6">
-                  <div className="text-[10px] text-white font-medium">9:41</div>
-                  <div className="flex gap-1.5">
-                    <div className="w-12 h-4 bg-black rounded-full absolute left-1/2 -translate-x-1/2 top-2"></div>
-                    <div className="w-3 h-3 bg-white rounded-full opacity-20"></div>
-                  </div>
+             {/* Floating Glass Logo Container - Resized to 320px */}
+             <motion.div
+               animate={{ y: [0, -12, 0] }}
+               transition={{ 
+                 duration: 6, 
+                 repeat: Infinity, 
+                 ease: "easeInOut" 
+               }}
+               className="relative z-20 w-full max-w-[320px] aspect-square rounded-[3rem] bg-dark-950/40 backdrop-blur-2xl border border-white/10 flex items-center justify-center shadow-2xl overflow-hidden group"
+             >
+                {/* Ambient Edge Glow - Rotating behind the logo */}
+                <motion.div 
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                  className="absolute w-[150%] h-[150%] bg-[conic-gradient(from_0deg,transparent_0%,rgba(34,211,238,0.15)_25%,transparent_50%,rgba(34,211,238,0.15)_75%,transparent_100%)] opacity-60 pointer-events-none"
+                />
+
+                {/* Breathing Inner Glow */}
+                <motion.div 
+                  animate={{ opacity: [0.1, 0.3, 0.1] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-brand-500/10 blur-3xl pointer-events-none"
+                />
+                
+                {/* The Logo with subtle breathing scale */}
+                <div className="relative p-14 w-full h-full flex items-center justify-center">
+                   <motion.div
+                     animate={{ scale: [1, 1.02, 1] }}
+                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                     className="w-full h-full"
+                   >
+                     <Logo 
+                        className="w-full h-full text-white drop-shadow-[0_0_30px_rgba(34,211,238,0.4)] transition-transform duration-700 group-hover:scale-105" 
+                        accentColor="#22d3ee" 
+                     />
+                   </motion.div>
                 </div>
 
-                {/* Dashboard View */}
-                <div className="absolute inset-0 bg-dark-800 flex flex-col pt-8">
-                  <div className="p-6 h-full flex flex-col gap-4">
-                    {/* Header */}
-                    <div className="flex justify-between items-center mb-2">
-                        <div>
-                            <div className="text-xs text-brand-400 font-semibold uppercase">Willkommen zurück</div>
-                            <div className="text-xl font-bold text-white">Dashboard</div>
-                        </div>
-                        <div className="w-8 h-8 rounded-full bg-slate-700"></div>
-                    </div>
+                {/* Glass reflections */}
+                <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 px-12 bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
+             </motion.div>
 
-                    {/* Dashboard Widgets */}
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-slate-700/50 p-4 rounded-xl border border-slate-600/50">
-                            <div className="text-2xl font-bold text-white mb-1">5a</div>
-                            <div className="text-xs text-slate-400">Nächste Klasse</div>
-                        </div>
-                        <div className="bg-slate-700/50 p-4 rounded-xl border border-slate-600/50">
-                            <div className="text-2xl font-bold text-brand-400 mb-1">3</div>
-                            <div className="text-xs text-slate-400">Geburtstage</div>
-                        </div>
-                    </div>
-
-                    <div className="flex-1 bg-slate-900/50 rounded-xl border border-slate-700/50 p-4 overflow-hidden relative">
-                         <div className="text-sm font-semibold text-white mb-4">Schülerliste 5a</div>
-                         <div className="space-y-3">
-                             {[1,2,3,4,5].map((i) => (
-                                 <div key={i} className="flex items-center gap-3 p-2 rounded-lg bg-slate-800/50">
-                                     <div className="w-8 h-8 rounded-full bg-slate-700"></div>
-                                     <div className="flex-1 h-2 bg-slate-600 rounded w-24"></div>
-                                     <div className="w-4 h-4 rounded bg-slate-700"></div>
-                                 </div>
-                             ))}
-                         </div>
-                         <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-dark-800 to-transparent"></div>
-                    </div>
-                  </div>
-                </div>
+             {/* Background Atmosphere Layers */}
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] -z-10">
+                {/* Pulsing main glow */}
+                <motion.div 
+                   animate={{ 
+                     scale: [1, 1.15, 1],
+                     opacity: [0.2, 0.4, 0.2]
+                   }}
+                   transition={{ duration: 8, repeat: Infinity }}
+                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-brand-500/20 blur-[100px] rounded-full"
+                />
+                
+                {/* Secondary accent glow */}
+                <div className="absolute top-1/4 right-1/4 w-[40%] h-[40%] bg-cyan-400/10 blur-[120px] rounded-full" />
              </div>
-
-             <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[90%] bg-brand-500/10 blur-3xl rounded-full"></div>
           </motion.div>
         </div>
       </div>

@@ -1,3 +1,5 @@
+
+import { LucideIcon } from 'lucide-react';
 import React from 'react';
 
 declare global {
@@ -17,7 +19,7 @@ export interface FeatureItem {
 export interface FeatureSection {
   title: string;
   description: string;
-  visualType: 'list' | 'card' | 'table' | 'check' | 'abstract' | 'stat'; 
+  visualType: 'list' | 'card' | 'table' | 'check' | 'abstract' | 'stat' | 'security-lock' | 'backup-lock'; 
   items?: string[]; 
   image?: string; 
 }

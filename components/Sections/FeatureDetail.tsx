@@ -1,12 +1,99 @@
+
 import React, { useEffect, useMemo } from 'react';
 import { useParams, Navigate, Link } from '../../lib/router'; 
 import { content } from '../../lib/content';
-import { Check, LayoutGrid, ArrowRight } from 'lucide-react';
+import { Check, LayoutGrid, ArrowRight, ShieldCheck, Lock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { PageTransition } from '../Layout/PageTransition';
 import { SmartImage } from '../ui/SmartImage';
 
 const AbstractUI: React.FC<{ type: string }> = ({ type }) => {
+  if (type === 'security-lock') {
+    return (
+      <div className="w-full aspect-[4/3] bg-dark-900 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden flex items-center justify-center">
+        {/* Animated Background Layers */}
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.2, 0.1]
+          }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute w-64 h-64 bg-brand-500/20 blur-[80px] rounded-full"
+        />
+        
+        {/* Pulsing Concentric Rings */}
+        {[1, 2, 3].map((i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ 
+              opacity: [0, 0.2, 0],
+              scale: [0.5, 1.5],
+            }}
+            transition={{ 
+              duration: 3, 
+              repeat: Infinity, 
+              delay: i * 1,
+              ease: "easeOut"
+            }}
+            className="absolute w-40 h-40 border border-brand-500/30 rounded-full"
+          />
+        ))}
+
+        {/* Main Icon Container */}
+        <motion.div
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="relative z-10 p-10 rounded-[2.5rem] bg-dark-950/50 backdrop-blur-md border border-white/10 shadow-glow flex items-center justify-center group"
+        >
+          <div className="absolute inset-0 bg-gradient-to-tr from-brand-500/10 to-transparent rounded-[2.5rem]" />
+          <ShieldCheck className="w-24 h-24 text-brand-400 drop-shadow-[0_0_20px_rgba(34,211,238,0.5)]" strokeWidth={1.5} />
+        </motion.div>
+      </div>
+    );
+  }
+
+  if (type === 'backup-lock') {
+    return (
+      <div className="w-full aspect-[4/3] bg-dark-900 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden flex items-center justify-center">
+        {/* Pulsing Background Glow (Consistency with Section 1) */}
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.3, 1],
+            opacity: [0.15, 0.25, 0.15]
+          }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute w-72 h-72 bg-brand-500/20 blur-[100px] rounded-full"
+        />
+
+        {/* Scanning Box */}
+        <div className="relative z-10 p-12 rounded-[2.5rem] bg-dark-950/40 backdrop-blur-md border border-white/10 flex items-center justify-center overflow-hidden shadow-2xl">
+          <Lock className="w-20 h-20 text-brand-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]" strokeWidth={1.5} />
+          
+          {/* Vertical Scanning Beam - Slowed to 6s */}
+          <motion.div
+            animate={{ top: ['-20%', '120%', '-20%'] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand-400 to-transparent shadow-[0_0_20px_rgba(34,211,238,1)] z-20"
+          />
+          
+          {/* Subtle Glow Pulse inside the lock box */}
+          <motion.div 
+            animate={{ opacity: [0.05, 0.2, 0.05] }}
+            transition={{ duration: 3, repeat: Infinity }}
+            className="absolute inset-0 bg-brand-500/10"
+          />
+        </div>
+
+        {/* Corner Accents */}
+        <div className="absolute top-12 left-12 w-6 h-6 border-t-2 border-l-2 border-brand-500/40 rounded-tl-lg" />
+        <div className="absolute top-12 right-12 w-6 h-6 border-t-2 border-r-2 border-brand-500/40 rounded-tr-lg" />
+        <div className="absolute bottom-12 left-12 w-6 h-6 border-b-2 border-l-2 border-brand-500/40 rounded-bl-lg" />
+        <div className="absolute bottom-12 right-12 w-6 h-6 border-b-2 border-r-2 border-brand-500/40 rounded-br-lg" />
+      </div>
+    );
+  }
+
   if (type === 'stat') {
     return (
       <div className="w-full aspect-[4/3] bg-dark-900 rounded-2xl border border-slate-800 p-6 flex flex-col gap-4 shadow-xl relative overflow-hidden">
@@ -102,16 +189,10 @@ export const FeatureDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const pageData = content.pages[slug || ''];
 
-  /**
-   * Strategie für "Mehr entdecken":
-   * Wir wollen vermeiden, dass dem Nutzer immer dieselben 3 Features vorgeschlagen werden.
-   * Daher filtern wir alle gültigen Features (außer dem aktuellen), mischen sie zufällig
-   * und nehmen dann die ersten 3. Dank useMemo ändert sich die Auswahl nur bei Navigation (slug).
-   */
   const otherFeatures = useMemo(() => {
     return [...content.features]
       .filter(f => f.slug !== slug && f.slug && content.pages[f.slug])
-      .sort(() => Math.random() - 0.5) // Zufälliges Mischen
+      .sort(() => Math.random() - 0.5) 
       .slice(0, 3);
   }, [slug]);
 

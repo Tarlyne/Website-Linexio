@@ -124,20 +124,20 @@ export const content: ContentStore = {
       sections: [
         {
           title: "Offline-First Ansatz",
-          description: "Linexio ist keine klassische Cloud-App. Alle Daten liegen physisch auf dem Speicherchip Ihres iPads. Wenn Sie die App schließen, sind die Daten sicher auf Ihrem Gerät verschlossen.",
-          visualType: "stat",
-          image: `${EXTERNAL_IMAGE_BASE}security.webp`
+          description: "Linexio nutzt keine externen Server. Alle Daten liegen auf Ihrem Endgerät. Wenn Sie die App schließen, sind die Daten sicher auf Ihrem Gerät verschlossen.",
+          visualType: "security-lock"
         },
         {
-          title: "Backup & Biometrie",
-          description: "Erstellen Sie hochverschlüsselte Backups für externe Speicherorte und schützen Sie die App im Lehrerzimmer per FaceID oder TouchID.",
-          visualType: "check",
-          items: ["AES-256 Verschlüsselung", "FaceID / TouchID Support", "Vollständige Datenhoheit"]
+          title: "Backup",
+          description: "Erstellen Sie hochverschlüsselte Backups für externe Speicherorte.",
+          visualType: "backup-lock",
+          items: ["AES-256 Verschlüsselung", "Zusätzlich passwortgeschützt", "Vollständige Datenhoheit"]
         },
         {
           title: "Der Datenschutz-Wächter",
           description: "Unser einzigartiges Konzept anonymisiert Daten, bevor sie (optional) für intelligente Funktionen genutzt werden. Die KI erhält nur Platzhalter.",
           visualType: "abstract",
+          image: `${EXTERNAL_IMAGE_BASE}feedback.webp`,
           items: ["Anonymisierte KI-Anfragen", "Kein Tracking", "DSGVO-konform"]
         }
       ]
@@ -151,24 +151,40 @@ export const content: ContentStore = {
       },
       sections: [
         {
-          title: "Intelligente Berechnung",
-          description: "Linexio beherrscht sowohl das klassische Notensystem (1-6) als auch das Oberstufen-Punktesystem (0-15).",
+          title: "Übersicht",
+          description: "Linexio bietet Ihnen übersichtliche Listen. Eine Gesamtübersicht zeigt alle von Ihnen erstellten Kategorien. Jede Kategorie hat eine eigene Seite, so dass alles übersichtlich bleibt und nicht in einer Tabelle aufgelistet werden muss.",
           visualType: "table",
-          image: `${EXTERNAL_IMAGE_BASE}noten.webp`,
-          items: ["Individuelle Gewichtung", "Rohpunkte-Rechner", "Numpad-Eingabe für iPad"]
+          image: `${EXTERNAL_IMAGE_BASE}gesamtUebersicht.webp`,
+          items: ["Gesamtübersicht", "Zeugnisnoten händisch änderbar", "Numpad-Eingabe für iPad"]
         },
         {
           title: "Gewichtung & Transparenz",
-          description: "Sie entscheiden, wie viel zählt. Stellen Sie das Verhältnis von schriftlichen zu mündlichen Leistungen präzise ein.",
+          description: "Sie entscheiden, was wie viel zählt. Stellen Sie die Gewichtung von allen Einzelnoten individuell ein.",
           visualType: "list",
-          items: ["Frei definierbare Kategorien", "Notentendenzen (+/-)", "Automatischer Notenschlüssel"]
+          image: `${EXTERNAL_IMAGE_BASE}einzelFokus.webp`,
+          items: ["Frei definierbare Kategorien", "Individuelle Gewichtung", "Automatische Berechnung", "Fokussierung auf einzelne SchülerIn"]
         },
         {
-          title: "Der Elternsprechtag-Retter",
-          description: "Generieren Sie mit einem Klick detaillierte Leistungsübersichten für jeden Schüler. Dokumentieren Sie die Notenentwicklung rechtssicher.",
+          title: "Exportfunktion aller Listen",
+          description: "Generieren Sie mit einem Klick detaillierte Leistungsübersichten für jeden Schüler oder der gesamten Klasse. Zur Vorbereitung für Besprechungen, oder einfach als zusätzliches physisches Backup für Ihre Unterlagen.",
           visualType: "check",
-          items: ["PDF-Export pro Schüler", "Unterschriftenfelder integriert", "Klausur-Übersichten"]
-        }
+          image: `${EXTERNAL_IMAGE_BASE}export1.webp`,
+          items: ["PDF-Export pro Schüler", "PDF-Export der Gesamtübersicht", "Zusätzliches Backup"]
+        },
+        {
+          title: "Auswertung der Leistungen",
+          description: "Verschaffen Sie sich einen Überblick über die Gesamtleistung einer Kategorie oder einer Klassenarbeit.",
+          visualType: "check",
+          image: `${EXTERNAL_IMAGE_BASE}auswertung.webp`,
+          items: ["Durchschnittlich erreichte Punktzahlen pro Aufgabe", "Hinweise zur Förderung", "Notenspiegel", "Theme: Amethyst"]
+        },
+        {
+          title: "Feedback für Ihre SchülerInnen",
+          description: "Erstellen Sie ein individuelles Feedback für Ihre SchülerInnen zu jedem Leistungsnachweis (egal, ob mündliche Note oder Klassenarbeit).",
+          visualType: "check",
+          image: `${EXTERNAL_IMAGE_BASE}feedbackExport.webp`,
+          items: ["Leistungsstand im Vergleich", "Vergleich zur vorherigen Leistung", "Schriftliches Feedback (auf Wunsch mit KI-Unterstützung)"]
+        }       
       ]
     },
     "dashboard": {
@@ -184,13 +200,14 @@ export const content: ContentStore = {
           description: "Vom Geburtstags-Radar über den Ferien-Countdown bis hin zu offenen Aufgaben – das Dashboard denkt mit.",
           visualType: "stat",
           image: `${EXTERNAL_IMAGE_BASE}dashboard.webp`,
-          items: ["Geburtstags-Radar (7 Tage)", "Ferien-Countdown", "Datierte Checklisten", "Backup-Erinnerung"]
+          items: ["Geburtstags-Radar (7 Tage)", "Ferien-Countdown (für Ihr gewähltes Bundesland)", "Datierte Checklisten", "Backup-Erinnerung"]
         },
         {
           title: "Motivation & Übersicht",
           description: "Ein täglich wechselndes Zitat sorgt für Motivation oder regt zum Nachdenken an. Termine der nächsten 14 Tage werden Ihnen ebenfalls angezeigt.",
           visualType: "abstract",
-          items: ["Tageszitate", "Terminübersicht", "Kalenderwoche"]
+          image: `${EXTERNAL_IMAGE_BASE}dashboard1.webp`,
+          items: ["Tageszitate", "Terminübersicht", "Kalenderwoche", "Theme: Terranova"]
         }
       ]
     },
@@ -262,7 +279,7 @@ export const content: ContentStore = {
           description: "Ob Kopiergeld, Elternbriefe oder Materialkontrolle – erstellen Sie individuelle Listen für jeden Zweck.",
           visualType: "list",
           image: `${EXTERNAL_IMAGE_BASE}checklisten.webp`,
-          items: ["schnelle Kontrolle", "Alles im Blick"]
+          items: ["Schnelle Kontrolle", "Alles im Blick"]
         }
       ]
     },
@@ -307,7 +324,7 @@ export const content: ContentStore = {
       sections: [
         {
           title: "Das Fairness-Prinzip",
-          description: "Linexio merkt sich, wer schon dran war, bis alle einmal aufgerufen wurden. So fühlt sich niemand benachteiligt. Abwesende SchülerInnen können zuvor markiert werden, so dass diese nicht berücksichtigt werden.",
+          description: "Linexio merkt sich, wer schon dran war, bis alle einmal aufgerufen wurden. So fühlt sich niemand benachteltigt. Abwesende SchülerInnen können zuvor markiert werden, so dass diese nicht berücksichtigt werden.",
           visualType: "stat",
           image: `${EXTERNAL_IMAGE_BASE}zufall1.webp`,
           items: ["Gedächtnis-Funktion", "Spotlight Animation", "Einfache Bedienung"]
@@ -324,10 +341,17 @@ export const content: ContentStore = {
       sections: [
         {
           title: "Quiz & Karteikarten",
-          description: "Wählen Sie zwischen einem interaktiven Quiz oder klassischen digitalen Karteikarten zum Wischen.",
+          description: "Wählen Sie zum Üben klassische, digitale Karteikarten oder testen Sie sich selbst in einem Quiz.",
           visualType: "abstract",
           image: `${EXTERNAL_IMAGE_BASE}namen.webp`,
           items: ["Foto-Unterstützung", "Gamification Ansatz", "Lernfortschritt"]
+        },
+        {
+          title: "Mehrere Modi",
+          description: "Wählen Sie einen von vier Modi aus, um sich selbst zu überprüfen und zu lernen. Ihr Fortschritt wird Ihnen am Ende jeder Runde angezeigt.",
+          visualType: "list",
+          image: `${EXTERNAL_IMAGE_BASE}namen1.webp`,
+          items: ["Namen zu Bild", "Bild zu Namen", "Eingabe zu Bild", "Königsdisziplin: vollständiger Name zu Bild"]
         }
       ]
     },
@@ -341,15 +365,17 @@ export const content: ContentStore = {
       sections: [
         {
           title: "Termin-Verknüpfung",
-          description: "Verwalten Sie Klausuren, Konferenzen oder Elterngespräche. Linexio warnt Sie automatisch bei NTA-Überschneidungen.",
+          description: "Verwalten Sie Klausuren, Konferenzen oder Elterngespräche. Linexio erinnert Sie daran, wenn es für eine Klausur SchülerInnen mit einem NTA gibt.",
           visualType: "check",
-          items: ["Automatischer NTA-Warner", "Kalender-Integration", "Ferien-Import"]
+          image: `${EXTERNAL_IMAGE_BASE}termine.webp`,
+          items: ["Automatische NTA-Erinnerung", "Kalender-Integration", "Bundeslandspezifische Feiertage", "Unterschiedliche Farben der Terminarten"]
         },
         {
           title: "Dienstliches Notizbuch",
-          description: "Erstellen Sie Kategorien für Dienstbesprechungen, Ideen oder Protokolle. Alles durchsuchbar und lokal gesichert.",
+          description: "Erstellen Sie Kategorien für Dienstbesprechungen, Ideen oder Protokolle.",
           visualType: "list",
-          items: ["Kategorisierte Notizen", "Schnellsuche", "Kein Cloud-Zwang"]
+          image: `${EXTERNAL_IMAGE_BASE}notizen.webp`,
+          items: ["Kategorisierte Notizen", "Übersichtlich"]
         }
       ]
     },
@@ -365,13 +391,22 @@ export const content: ContentStore = {
           title: "Design & Themes",
           description: "Wählen Sie aus verschiedenen modernen Themes wie 'Aurora', 'Solaris' oder 'Amethyst'.",
           visualType: "check",
-          items: ["Farb-Varianten", "Dark & Light Mode", "Individuelle Akzentfarben"]
+          image: `${EXTERNAL_IMAGE_BASE}themes.webp`,
+          items: ["Farb-Varianten", "Dark & Light Themes"]
         },
         {
-          title: "Datenverwaltung",
-          description: "Hier haben Sie die volle Kontrolle über Ihre Backups und die Sicherheits-Einstellungen.",
+          title: "Datenverwaltung & Notenschlüssel",
+          description: "Hier haben Sie die volle Kontrolle über Ihre Backups und die Sicherheits-Einstellungen. Definieren Sie die prozentualen Notengrenzen, die für Ihr Fach gelten.",
           visualType: "check",
-          items: ["Verschlüsselte Backups", "Sicherheits-Checkup", "Versions-Historie"]
+          image: `${EXTERNAL_IMAGE_BASE}notenschluessel1.webp`,
+          items: ["Verschlüsselte Backups", "Sicherheits-Checkup", "Notengrenzen für Klausuren", "... und vieles mehr."]
+        },
+        {
+          title: "Feedback",
+          description: "Haben Sie einen Fehler gefunden? Haben Sie Wünsche oder Verbesserungsvorschläge? Nutzen Sie schnell und einfach das eingebaute Feature für Ihr Feedback.",
+          visualType: "check",
+          image: `${EXTERNAL_IMAGE_BASE}support.webp`,
+          items: ["Schnelles & einfaches Feedback", "Screenshot-Einbindung", "Aktive Mitgestaltung der App-Zukunft"]
         }
       ]
     }
