@@ -15,7 +15,9 @@ import {
 } from 'lucide-react';
 import { FeatureItem, FeaturePageData, ContentStore } from '../types';
 
-const EXTERNAL_IMAGE_BASE = "/assets/";
+const isProd = process.env.NODE_ENV === 'production';
+const BASE_PATH = isProd ? '/Website-Linexio' : '';
+const EXTERNAL_IMAGE_BASE = `${BASE_PATH}/assets/`;
 
 export const content: ContentStore = {
   brand: {
