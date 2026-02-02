@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://tarlyne.github.io/Website-Linexio/sitemap.xml
