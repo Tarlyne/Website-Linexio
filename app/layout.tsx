@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 export const metadata: Metadata = {
     title: 'Linexio - Der digitale Lehrer-Assistent für das iPad',
     description: 'Linexio organisiert Ihren Schulalltag intuitiv, effizient und 100% offline. Notenverwaltung, Sitzpläne und Checklisten – speziell für Lehrkräfte entwickelt.',
-    keywords: 'Lehrer App, iPad Unterricht, Notenverwaltung, Sitzplan App, DSGVO Lehrer App',
+    keywords: 'Lehrer App, iPad Unterricht, Notenverwaltung, kostenlos, Sitzplan App, DSGVO Lehrer App',
     authors: [{ name: 'Torben Böhm' }],
     openGraph: {
         type: 'website',
